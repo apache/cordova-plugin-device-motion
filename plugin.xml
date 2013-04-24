@@ -24,8 +24,8 @@ id="org.apache.cordova.core.AccelListener">
             <plugin name="Accelerometer" value="CDVAccelerometer"/>
         </config-file>
         
-        <header-file src="CDVAccelerometer.h" target-dir="org/apache/cordova/core" />
-        <source-file src="CDVAccelerometer.m" target-dir="org/apache/cordova/core" />
+	<header-file src="src/ios/CDVAccelerometer.h" target-dir="org/apache/cordova/core" />
+	<source-file src="src/ios/CDVAccelerometer.m" target-dir="org/apache/cordova/core" />
         
     </platform>
     
