@@ -4,14 +4,29 @@
 xmlns:android="http://schemas.android.com/apk/res/android"
 id="org.apache.cordova.core.AccelListener">
     version="0.1.0">
+	
 	<name>Device Motion</name>
 
 	<!-- android -->
 	<platform name="android">
+	    
 		<config-file target="res/xml/config.xml" parent="/cordova/plugins">
 			<plugin name="Accelerometer" value="org.apache.cordova.core.AccelListener"/>
 		</config-file>
 
 		<source-file src="AccelListener.java" target-dir="src/org/apache/cordova/core" />
        </platform>
+    
+    <!-- ios -->
+    <platform name="ios">
+        
+        <config-file target="config.xml" parent="/cordova/plugins">
+            <plugin name="Accelerometer" value="CDVAccelerometer"/>
+        </config-file>
+        
+        <header-file src="CDVAccelerometer.h" target-dir="org/apache/cordova/core" />
+        <source-file src="CDVAccelerometer.m" target-dir="org/apache/cordova/core" />
+        
+    </platform>
+    
 </plugin>
