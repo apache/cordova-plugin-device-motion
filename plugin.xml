@@ -14,7 +14,7 @@ id="org.apache.cordova.core.AccelListener">
 			<plugin name="Accelerometer" value="org.apache.cordova.core.AccelListener"/>
 		</config-file>
 
-		<source-file src="AccelListener.java" target-dir="src/org/apache/cordova/core" />
+		<source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/core" />
        </platform>
     
     <!-- ios -->
