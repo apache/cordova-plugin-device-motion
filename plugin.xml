@@ -7,6 +7,10 @@ id="org.apache.cordova.core.AccelListener"
 	
 	<name>Device Motion</name>
 
+    <js-module src="www/device-motion.js" name="accelerometer">
+        <clobbers target="navigator.accelerometer" />
+    </js-module>
+
 	<!-- android -->
 	<platform name="android">
 	    
