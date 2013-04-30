@@ -19,7 +19,7 @@
  *
 */
 
-var VERSION='2.6.0';
+var VERSION='dev';
 var PLAT;
 if (/Android/.exec(navigator.userAgent)) {
     PLAT = 'android';
