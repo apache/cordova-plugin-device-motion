@@ -7,10 +7,14 @@ id="org.apache.cordova.core.AccelListener"
 	
 	<name>Device Motion</name>
 
-    <js-module src="www/device-motion.js" name="accelerometer">
+    <js-module src="www/Acceleration.js" name="Acceleration">
+        <clobbers target="Acceleration" />
+    </js-module>
+    
+    <js-module src="www/accelerometer.js" name="accelerometer">
         <clobbers target="navigator.accelerometer" />
     </js-module>
-
+    
 	<!-- android -->
 	<platform name="android">
 	    
@@ -19,7 +23,8 @@ id="org.apache.cordova.core.AccelListener"
 		</config-file>
 
 		<source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/core" />
-       </platform>
+    
+    </platform>
     
     <!-- ios -->
     <platform name="ios">
