@@ -5,7 +5,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 id="org.apache.cordova.core.AccelListener"
     version="0.1.0">
 	
-	<name>Device Motion</name>
+    <name>Device Motion</name>
 
     <js-module src="www/Acceleration.js" name="Acceleration">
         <clobbers target="Acceleration" />
@@ -15,14 +15,16 @@ id="org.apache.cordova.core.AccelListener"
         <clobbers target="navigator.accelerometer" />
     </js-module>
     
-	<!-- android -->
-	<platform name="android">
+    <!-- android -->
+    <platform name="android">
 	    
-		<config-file target="res/xml/config.xml" parent="plugins">
-			<plugin name="Accelerometer" value="org.apache.cordova.core.AccelListener"/>
-		</config-file>
+        <config-file target="res/xml/config.xml" parent="widget">
+		<feature name="Accelerometer">
+			<param name="android-package" value="org.apache.cordova.core.AccelListener"/>
+		</feature>
+	</config-file>
 
-		<source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/core" />
+	<source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/core" />
     
     </platform>
     
@@ -30,11 +32,13 @@ id="org.apache.cordova.core.AccelListener"
     <platform name="ios">
         
         <config-file target="config.xml" parent="plugins">
-            <plugin name="Accelerometer" value="CDVAccelerometer"/>
+		<feature name="Accelerometer">
+			<param name="ios-package" value="CDVAccelerometer"/>
+		</feature>
         </config-file>
         
-	    <header-file src="src/ios/CDVAccelerometer.h" />
-	    <source-file src="src/ios/CDVAccelerometer.m" />
+	<header-file src="src/ios/CDVAccelerometer.h" />
+	<source-file src="src/ios/CDVAccelerometer.m" />
         
     </platform>
     
