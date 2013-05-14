@@ -166,5 +166,4 @@ var accelerometer = {
         }
     }
 };
-console.log("SHIT "+ accelerometer);
 module.exports = accelerometer;
