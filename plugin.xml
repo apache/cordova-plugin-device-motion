@@ -45,7 +45,7 @@ id="org.apache.cordova.core.AccelListener"
     <platform name="wp7">
         <config-file target="config.xml" parent="/*">
             <feature name="Accelerometer">
-                <param name="wp7-package" value="Accelerometer"/>
+                <param name="wp-package" value="Accelerometer"/>
             </feature>
         </config-file>
         
