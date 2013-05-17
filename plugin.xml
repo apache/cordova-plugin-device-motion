@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
 xmlns:android="http://schemas.android.com/apk/res/android"
 id="org.apache.cordova.core.AccelListener"
     version="0.1.0">
@@ -19,12 +19,12 @@ id="org.apache.cordova.core.AccelListener"
     <platform name="android">
 	    
         <config-file target="res/xml/config.xml" parent="/*">
-		<feature name="Accelerometer">
-			<param name="android-package" value="org.apache.cordova.core.AccelListener"/>
-		</feature>
-	</config-file>
+            <feature name="Accelerometer">
+                <param name="android-package" value="org.apache.cordova.core.AccelListener"/>
+            </feature>
+        </config-file>
 
-	<source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/core" />
+        <source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/core" />
     
     </platform>
     
@@ -32,14 +32,24 @@ id="org.apache.cordova.core.AccelListener"
     <platform name="ios">
         
         <config-file target="config.xml" parent="/*">
-		<feature name="Accelerometer">
-			<param name="ios-package" value="CDVAccelerometer"/>
-		</feature>
+            <feature name="Accelerometer">
+                <param name="ios-package" value="CDVAccelerometer"/>
+            </feature>
+        </config-file>
+            
+        <header-file src="src/ios/CDVAccelerometer.h" />
+        <source-file src="src/ios/CDVAccelerometer.m" />
+        
+    </platform>
+
+    <platform name="wp7">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Accelerometer">
+                <param name="wp7-package" value="Accelerometer"/>
+            </feature>
         </config-file>
         
-	<header-file src="src/ios/CDVAccelerometer.h" />
-	<source-file src="src/ios/CDVAccelerometer.m" />
-        
+        <source-file src="src/wp7/Accelerometer.cs" />
     </platform>
     
 </plugin>
