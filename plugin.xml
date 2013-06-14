@@ -42,11 +42,16 @@ id="org.apache.cordova.core.AccelListener"
         
     </platform>
 
+    <!-- wp7 -->
     <platform name="wp7">
         <config-file target="config.xml" parent="/*">
             <feature name="Accelerometer">
                 <param name="wp-package" value="Accelerometer"/>
             </feature>
+        </config-file>
+
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_SENSORS" />
         </config-file>
         
         <source-file src="src/wp7/Accelerometer.cs" />
