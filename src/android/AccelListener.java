@@ -59,6 +59,13 @@ public class AccelListener extends CordovaPlugin implements SensorEventListener 
 
     private CallbackContext callbackContext;              // Keeps track of the JS callback context.
 
+    private Handler mainHandler=null;
+    private Runnable mainRunnable =new Runnable() {
+        public void run() {
+            AccelListener.this.timeout();
+        }
+    };
+
     /**
      * Create an accelerometer listener.
      */
@@ -155,20 +162,22 @@ public class AccelListener extends CordovaPlugin implements SensorEventListener 
         }
 
         // Set a timeout callback on the main thread.
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                AccelListener.this.timeout();
-            }
-        }, 2000);
+        stopTimeout();
+        mainHandler = new Handler(Looper.getMainLooper());
+        mainHandler.postDelayed(mainRunnable, 2000);
 
         return this.status;
     }
-
+    private void stopTimeout() {
+        if(mainHandler!=null){
+            mainHandler.removeCallbacks(mainRunnable);
+        }
+    }
     /**
      * Stop listening to acceleration sensor.
      */
     private void stop() {
+        stopTimeout();
         if (this.status != AccelListener.STOPPED) {
             this.sensorManager.unregisterListener(this);
         }
