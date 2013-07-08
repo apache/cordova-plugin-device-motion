@@ -61,7 +61,7 @@
             <Capability Name="ID_CAP_SENSORS" />
         </config-file>
 
-        <source-file src="src/wp7/Accelerometer.cs" />
+        <source-file src="src/wp/Accelerometer.cs" />
     </platform>
 
     <!-- wp8 -->
@@ -76,7 +76,7 @@
             <Capability Name="ID_CAP_SENSORS" />
         </config-file>
 
-        <source-file src="src/wp8/Accelerometer.cs" />
+        <source-file src="src/wp/Accelerometer.cs" />
     </platform>
     
 </plugin>
