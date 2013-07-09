@@ -26,7 +26,7 @@
 var argscheck = require('cordova/argscheck'),
     utils = require("cordova/utils"),
     exec = require("cordova/exec"),
-    Acceleration = require('org.apache.cordova.core.device-motion.Acceleration');
+    Acceleration = require('./Acceleration');
 
 // Is the accel sensor running?
 var running = false;
