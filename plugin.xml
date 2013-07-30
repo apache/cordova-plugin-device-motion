@@ -5,6 +5,9 @@
       version="0.1.0">
 	
     <name>Device Motion</name>
+    <description>Cordova Device Motion Plugin</description>
+    <license>Apache</license>
+    <keywords>cordova,device,motion</keywords>
 
     <js-module src="www/Acceleration.js" name="Acceleration">
         <clobbers target="Acceleration" />
