@@ -22,11 +22,11 @@
 	    
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Accelerometer">
-                <param name="android-package" value="org.apache.cordova.core.AccelListener"/>
+                <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/core" />
+        <source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/devicemotion" />
     
     </platform>
     
