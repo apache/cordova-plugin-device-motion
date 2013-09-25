@@ -67,4 +67,4 @@ module.exports = {
     }
 };
 
-require("cordova/commandProxy").add("Accelerometer",module.exports);
+require("cordova/windows8/commandProxy").add("Accelerometer",module.exports);
