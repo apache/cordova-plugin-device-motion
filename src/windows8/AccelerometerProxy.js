@@ -22,7 +22,7 @@
 /*global Windows:true */
 
 var cordova = require('cordova'),
-    Acceleration = require('org.apache.cordova.core.device-motion.Acceleration');
+    Acceleration = require('org.apache.cordova.device-motion.Acceleration');
 
 /* This is the actual implementation part that returns the result on Windows 8
 */
