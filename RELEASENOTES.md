@@ -20,4 +20,11 @@
 -->
 # Release Notes
 
-
+### 0.2.2 (Sept 25, 2013)
+* CB-4889 bumping&resetting version
+* [windows8] commandProxy was moved
+* CB-4889
+* CB-4889 renaming core inside windows8
+* CB-4889 renaming org.apache.cordova.core.device-motion to org.apache.cordova.device-motion
+* Rename CHANGELOG.md -> RELEASENOTES.md
+* [CB-4752] Incremented plugin version on dev branch.
