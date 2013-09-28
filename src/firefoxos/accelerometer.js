@@ -2,10 +2,10 @@ var firefoxos = require('cordova/platform');
 
 
 var Accelerometer = {
-    start: function start(accelerometerSuccess, accelerometerError) {
-        console.log('start watching acecelerometer');
+    start: function start(successCallback, errorCallback) {
+        console.log('start watching accelerometer');
         function accelerationCallback(deviceMotionEvent) {
-            accelerometerSuccess(deviceMotionEvent.acceleration);
+            successCallback(deviceMotionEvent.acceleration);
         }
         return document.addEventListener('devicemotion', accelerationCallback, false);
     },
