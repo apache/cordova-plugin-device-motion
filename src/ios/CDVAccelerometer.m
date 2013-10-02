@@ -17,10 +17,12 @@
  under the License.
  */
 
+#import <CoreMotion/CoreMotion.h>
 #import "CDVAccelerometer.h"
 
 @interface CDVAccelerometer () {}
 @property (readwrite, assign) BOOL isRunning;
+@property (readwrite, strong) CMMotionManager* motionManager;
 @end
 
 @implementation CDVAccelerometer
@@ -42,6 +44,7 @@
         timestamp = 0;
         self.callbackId = nil;
         self.isRunning = NO;
+        self.motionManager = nil;
     }
     return self;
 }
@@ -54,16 +57,29 @@
 - (void)start:(CDVInvokedUrlCommand*)command
 {
     NSString* cbId = command.callbackId;
-    NSTimeInterval desiredFrequency_num = kAccelerometerInterval;
-    UIAccelerometer* pAccel = [UIAccelerometer sharedAccelerometer];
 
-    // accelerometer expects fractional seconds, but we have msecs
-    pAccel.updateInterval = desiredFrequency_num / 1000;
-    self.callbackId = cbId;
-    if (!self.isRunning) {
-        pAccel.delegate = self;
-        self.isRunning = YES;
+    if (!self.motionManager)
+    {
+        self.motionManager = [[CMMotionManager alloc] init];
     }
+
+    if ([self.motionManager isAccelerometerAvailable] == YES) {
+        // Assign the update interval to the motion manager and start updates
+        [self.motionManager setAccelerometerUpdateInterval:kAccelerometerInterval/1000];  // expected in seconds
+        [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
+            x = accelerometerData.acceleration.x;
+            y = accelerometerData.acceleration.y;
+            z = accelerometerData.acceleration.z;
+            timestamp = ([[NSDate date] timeIntervalSince1970] * 1000);
+            [self returnAccelInfo];
+        }];
+
+        if (!self.isRunning) {
+            self.isRunning = YES;
+        }
+    }
+    
+    self.callbackId = cbId;
 }
 
 - (void)onReset
@@ -73,24 +89,10 @@
 
 - (void)stop:(CDVInvokedUrlCommand*)command
 {
-    UIAccelerometer* theAccelerometer = [UIAccelerometer sharedAccelerometer];
-
-    theAccelerometer.delegate = nil;
-    self.isRunning = NO;
-}
-
-/**
- * Picks up accel updates from device and stores them in this class
- */
-- (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
-{
-    if (self.isRunning) {
-        x = acceleration.x;
-        y = acceleration.y;
-        z = acceleration.z;
-        timestamp = ([[NSDate date] timeIntervalSince1970] * 1000);
-        [self returnAccelInfo];
+    if ([self.motionManager isAccelerometerAvailable] == YES) {
+        [self.motionManager stopAccelerometerUpdates];
     }
+    self.isRunning = NO;
 }
 
 - (void)returnAccelInfo
