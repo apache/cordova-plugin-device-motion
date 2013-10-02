@@ -66,12 +66,13 @@
     if ([self.motionManager isAccelerometerAvailable] == YES) {
         // Assign the update interval to the motion manager and start updates
         [self.motionManager setAccelerometerUpdateInterval:kAccelerometerInterval/1000];  // expected in seconds
+        __weak CDVAccelerometer* weakSelf = self;
         [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
             x = accelerometerData.acceleration.x;
             y = accelerometerData.acceleration.y;
             z = accelerometerData.acceleration.z;
             timestamp = ([[NSDate date] timeIntervalSince1970] * 1000);
-            [self returnAccelInfo];
+            [weakSelf returnAccelInfo];
         }];
 
         if (!self.isRunning) {
