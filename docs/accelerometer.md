@@ -48,7 +48,7 @@ Permissions
 
 #### app/res/xml/config.xml
 
-    <plugin name="Accelerometer" value="org.apache.cordova.AccelListener" />
+    <plugin name="Accelerometer" value="org.apache.cordova.devicemotion.AccelListener" />
 
 ### Bada
 
