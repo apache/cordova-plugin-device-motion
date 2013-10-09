@@ -42,6 +42,7 @@
         <header-file src="src/ios/CDVAccelerometer.h" />
         <source-file src="src/ios/CDVAccelerometer.m" />
         
+        <framework src="CoreMotion.framework" />
     </platform>
 
     <!-- blackberry10 -->
