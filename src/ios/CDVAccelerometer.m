@@ -22,6 +22,7 @@
 
 @interface CDVAccelerometer () {}
 @property (readwrite, assign) BOOL isRunning;
+@property (readwrite, assign) BOOL haveReturnedResult;
 @property (readwrite, strong) CMMotionManager* motionManager;
 @end
 
@@ -30,7 +31,7 @@
 @synthesize callbackId, isRunning;
 
 // defaults to 10 msec
-#define kAccelerometerInterval 40
+#define kAccelerometerInterval 10
 // g constant: -9.81 m/s^2
 #define kGravitationalConstant -9.81
 
@@ -44,6 +45,7 @@
         timestamp = 0;
         self.callbackId = nil;
         self.isRunning = NO;
+        self.haveReturnedResult = YES;
         self.motionManager = nil;
     }
     return self;
@@ -56,7 +58,8 @@
 
 - (void)start:(CDVInvokedUrlCommand*)command
 {
-    NSString* cbId = command.callbackId;
+    self.haveReturnedResult = NO;
+    self.callbackId = command.callbackId;
 
     if (!self.motionManager)
     {
@@ -80,7 +83,6 @@
         }
     }
     
-    self.callbackId = cbId;
 }
 
 - (void)onReset
@@ -91,6 +93,10 @@
 - (void)stop:(CDVInvokedUrlCommand*)command
 {
     if ([self.motionManager isAccelerometerAvailable] == YES) {
+        if (self.haveReturnedResult == NO){
+            // block has not fired before stop was called, return whatever result we currently have
+            [self returnAccelInfo];
+        }
         [self.motionManager stopAccelerometerUpdates];
     }
     self.isRunning = NO;
@@ -109,6 +115,7 @@
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:accelProps];
     [result setKeepCallback:[NSNumber numberWithBool:YES]];
     [self.commandDelegate sendPluginResult:result callbackId:self.callbackId];
+    self.haveReturnedResult = YES;
 }
 
 // TODO: Consider using filtering to isolate instantaneous data vs. gravity data -jm
