@@ -1,5 +1,3 @@
-var firefoxos = require('cordova/platform');
-
 
 var Accelerometer = {
     start: function start(successCallback, errorCallback) {
@@ -15,4 +13,5 @@ var Accelerometer = {
     }
 };
 
-firefoxos.registerPlugin('Accelerometer', Accelerometer);
+module.exports = Accelerometer;
+require('cordova/firefoxos/commandProxy').add('Accelerometer', Accelerometer);
