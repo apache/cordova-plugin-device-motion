@@ -19,6 +19,19 @@
         <clobbers target="navigator.accelerometer" />
     </js-module>
     
+    <!-- firefoxos -->
+    <platform name="firefoxos">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Accelerometer">
+                <param name="firefoxos-package" value="Accelerometer" />
+            </feature>
+        </config-file>                                         
+        
+        <js-module src="src/firefoxos/accelerometer.js" name="accelerometer-impl">
+          <runs />
+        </js-module>
+    </platform>
+
     <!-- android -->
     <platform name="android">
 	    
