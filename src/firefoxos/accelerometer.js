@@ -1,15 +1,15 @@
 
 var Accelerometer = {
-    start: function start(successCallback, errorCallback) {
-        console.log('start watching accelerometer');
-        function accelerationCallback(deviceMotionEvent) {
-            successCallback(deviceMotionEvent.acceleration);
-        }
-        return document.addEventListener('devicemotion', accelerationCallback, false);
+    start: function start(success, error) {
+        return window.addEventListener('devicemotion', function(ev) {
+            var acc = ev.accelerationIncludingGravity;
+            acc.timestamp = new Date().getTime();
+            success(ev.accelerationIncludingGravity);
+        }, false);
     },
-    stop: function stop(watchId) {
-        console.log('stop watching acecelerometer');
-        document.removeEventListener('devicemotion', watchId);
+
+    stop: function stop() {
+        window.removeEventListener('devicemotion');
     }
 };
 
