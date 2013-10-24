@@ -1,15 +1,16 @@
-
+var listener;
 var Accelerometer = {
     start: function start(success, error) {
-        return window.addEventListener('devicemotion', function(ev) {
+        listener = function(ev) {
             var acc = ev.accelerationIncludingGravity;
             acc.timestamp = new Date().getTime();
-            success(ev.accelerationIncludingGravity);
-        }, false);
+            success(acc);
+        }
+        return window.addEventListener('devicemotion', listener, false);
     },
 
     stop: function stop() {
-        window.removeEventListener('devicemotion');
+        window.removeEventListener('devicemotion', listener, false);
     }
 };
 
