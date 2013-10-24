@@ -4,7 +4,7 @@ var Accelerometer = {
         return window.addEventListener('devicemotion', function(ev) {
             var acc = ev.accelerationIncludingGravity;
             acc.timestamp = new Date().getTime();
-            success(ev.accelerationIncludingGravity);
+            success(acc);
         }, false);
     },
 
