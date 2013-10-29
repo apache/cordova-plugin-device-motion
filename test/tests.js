@@ -1,5 +1,5 @@
 exports.init = function() {
-  eval(require('org.apache.cordova.test.test').injectJasmineInterface(this, 'this'));
+  eval(require('org.apache.cordova.test-framework.test').injectJasmineInterface(this, 'this'));
 
   describe('Accelerometer (navigator.accelerometer)', function () {
     var fail = function(done) {
