@@ -29,7 +29,13 @@
         <source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/devicemotion" />
     
     </platform>
-    
+
+    <!-- ubuntu -->
+    <platform name="ubuntu">
+        <header-file src="src/ubuntu/accelerometer.h" />
+        <source-file src="src/ubuntu/accelerometer.cpp" />
+    </platform>
+
     <!-- ios -->
     <platform name="ios">
         
