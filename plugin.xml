@@ -58,6 +58,12 @@
     
     </platform>
     
+    <!-- ubuntu -->
+    <platform name="ubuntu">
+        <header-file src="src/ubuntu/accelerometer.h" />
+        <source-file src="src/ubuntu/accelerometer.cpp" />
+    </platform>
+
     <!-- ios -->
     <platform name="ios">
         
