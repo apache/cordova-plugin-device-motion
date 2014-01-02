@@ -49,3 +49,6 @@
 ### 0.2.4 (Dec 4, 2013)
 * add ubuntu platform
 * 1. Added amazon-fireos platform. 2. Change to use amazon-fireos as the platform if the user agent string contains 'cordova-amazon-fireos'
+
+### 0.2.5 (Jan 02, 2014)
+* CB-5658 Add doc/index.md for Device Motion plugin
