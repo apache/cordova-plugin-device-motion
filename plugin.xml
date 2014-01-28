@@ -123,5 +123,11 @@
             <merges target="" />
         </js-module>
     </platform>
-    
+
+    <!-- tizen -->
+    <platform name="tizen">
+        <js-module src="src/tizen/AccelerometerProxy.js" name="AccelerometerProxy">
+            <runs/>
+        </js-module>
+    </platform>
 </plugin>
