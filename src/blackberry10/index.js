@@ -41,5 +41,11 @@ module.exports = {
         var result = new PluginResult(args, env);
         window.removeEventListener("devicemotion", callback);
         result.ok("removed");
+    },
+    reset: function () {
+        if (callback) {
+            window.removeEventListener("devicemotion", callback);
+            callback = null;
+        }
     }
 };
