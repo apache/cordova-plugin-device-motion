@@ -2,12 +2,14 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
            id="org.apache.cordova.device-motion"
-      version="0.2.2-dev">
+      version="0.2.7-dev">
 	
     <name>Device Motion</name>
     <description>Cordova Device Motion Plugin</description>
     <license>Apache 2.0</license>
     <keywords>cordova,device,motion</keywords>
+    <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-device-motion.git</repo>
+    <issue>https://issues.apache.org/jira/browse/CB/component/12320636</issue>
 
     <js-module src="www/Acceleration.js" name="Acceleration">
         <clobbers target="Acceleration" />
@@ -17,6 +19,19 @@
         <clobbers target="navigator.accelerometer" />
     </js-module>
     
+    <!-- firefoxos -->
+    <platform name="firefoxos">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Accelerometer">
+                <param name="firefoxos-package" value="Accelerometer" />
+            </feature>
+        </config-file>                                         
+        
+        <js-module src="src/firefoxos/accelerometer.js" name="accelerometer-impl">
+          <runs />
+        </js-module>
+    </platform>
+
     <!-- android -->
     <platform name="android">
 	    
@@ -30,6 +45,25 @@
     
     </platform>
     
+    <!-- amazon-fireos -->
+    <platform name="amazon-fireos">
+	    
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Accelerometer">
+                <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/devicemotion" />
+    
+    </platform>
+    
+    <!-- ubuntu -->
+    <platform name="ubuntu">
+        <header-file src="src/ubuntu/accelerometer.h" />
+        <source-file src="src/ubuntu/accelerometer.cpp" />
+    </platform>
+
     <!-- ios -->
     <platform name="ios">
         
@@ -42,6 +76,7 @@
         <header-file src="src/ios/CDVAccelerometer.h" />
         <source-file src="src/ios/CDVAccelerometer.m" />
         
+        <framework src="CoreMotion.framework" />
     </platform>
 
     <!-- blackberry10 -->
@@ -88,5 +123,11 @@
             <merges target="" />
         </js-module>
     </platform>
-    
+
+    <!-- tizen -->
+    <platform name="tizen">
+        <js-module src="src/tizen/AccelerometerProxy.js" name="AccelerometerProxy">
+            <runs/>
+        </js-module>
+    </platform>
 </plugin>
