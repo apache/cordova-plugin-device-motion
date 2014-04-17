@@ -55,3 +55,9 @@
 
 ### 0.2.6 (Feb 05, 2014)
 * Add Tizen support
+
+### 0.2.7 (Apr 17, 2014)
+* CB-6422: [windows8] use cordova/exec/proxy
+* CB-6460: Update license headers
+* CB-6465: Add license headers to Tizen code
+* Add NOTICE file
