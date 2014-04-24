@@ -1,6 +1,6 @@
-exports.init = function() {
-  eval(require('org.apache.cordova.test-framework.test').injectJasmineInterface(this, 'this'));
+// Eventually, require cdvtest plugin, for now its global
 
+registerAutoTests('org.apache.cordova.device-motion', function() {
   describe('Accelerometer (navigator.accelerometer)', function () {
     var fail = function(done) {
       expect(true).toBe(false);
@@ -153,4 +153,4 @@ exports.init = function() {
       });
     });
   });
-};
+});
