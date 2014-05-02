@@ -54,5 +54,5 @@ void DeviceMotion::updateSensor() {
     obj.insert("timestamp", QDateTime::currentDateTime().toMSecsSinceEpoch());
 
     if (_scId)
-        this->cb(_scId, obj);
+        this->callbackWithoutRemove(_scId, CordovaInternal::format(obj));
 }
