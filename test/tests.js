@@ -1,6 +1,4 @@
-// Eventually, require cdvtest plugin, for now its global
-
-registerAutoTests('org.apache.cordova.device-motion', function() {
+exports.defineAutoTests = function() {
   describe('Accelerometer (navigator.accelerometer)', function () {
     var fail = function(done) {
       expect(true).toBe(false);
@@ -153,4 +151,4 @@ registerAutoTests('org.apache.cordova.device-motion', function() {
       });
     });
   });
-});
+};
