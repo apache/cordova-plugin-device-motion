@@ -19,7 +19,7 @@
 
 # org.apache.cordova.device-motion
 
-This plugin provides access to the device's accelerometer. The accelerometer is a motion sensor that detects the change (*delta*) in movement relative to the current device orientation, in three dimensions along the *x*, *y*, and *z* axis.
+このプラグインは、デバイスの加速度計へのアクセスを提供します。 加速度計の現在のデバイスの向き、 *x* *y*、および*z*軸に沿って 3 つの次元の相対運動の変更 (*デルタ*) を検出するモーション センサーです。
 
 ## インストール
 
@@ -31,7 +31,7 @@ This plugin provides access to the device's accelerometer. The accelerometer is 
 *   アマゾン火 OS
 *   アンドロイド
 *   ブラックベリー 10
-*   Firefox OS
+*   Firefox の OS
 *   iOS
 *   Tizen
 *   Windows Phone 7 と 8
@@ -82,16 +82,16 @@ This plugin provides access to the device's accelerometer. The accelerometer is 
 
 ## navigator.accelerometer.watchAcceleration
 
-Retrieves the device's current `Acceleration` at a regular interval, executing the `accelerometerSuccess` callback function each time. Specify the interval in milliseconds via the `acceleratorOptions` object's `frequency` parameter.
+取得、デバイスの現在 `Acceleration` 一定の間隔で実行する、 `accelerometerSuccess` コールバック関数するたびに。 経由でミリ秒単位で間隔を指定する、 `acceleratorOptions` オブジェクトの `frequency` パラメーター。
 
-The returned watch ID references the accelerometer's watch interval, and can be used with `navigator.accelerometer.clearWatch` to stop watching the accelerometer.
+返される ID の参照、加速度計腕時計間隔を見るし、で使用することができます `navigator.accelerometer.clearWatch` 、加速度計を見て停止します。
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
                                                            [accelerometerOptions]);
     
 
-*   **accelerometerOptions**: An object with the following optional keys: 
+*   **accelerometerOptions**: 次のオプションのキーを持つオブジェクト: 
     *   **周波数**: 取得する頻度、 `Acceleration` (ミリ秒単位)。*(数)*(デフォルト: 10000）
 
 ### 例
@@ -123,7 +123,7 @@ API は、要求された間隔で、成功コールバック関数を呼び出�
     navigator.accelerometer.clearWatch(watchID);
     
 
-*   **watchID**: The ID returned by `navigator.accelerometer.watchAcceleration`.
+*   **watchID**: によって返される ID`navigator.accelerometer.watchAcceleration`.
 
 ### 例
 
@@ -136,7 +136,7 @@ API は、要求された間隔で、成功コールバック関数を呼び出�
 
 ## 加速
 
-含まれています `Accelerometer` で特定の時点でキャプチャしたデータ。 Acceleration values include the effect of gravity (9.81 m/s^2), so that when a device lies flat and facing up, *x*, *y*, and *z* values returned should be ``, ``, and `9.81`.
+含まれています `Accelerometer` で特定の時点でキャプチャしたデータ。 加速度値のとおり重力の効果 (9.81 m/s ^2) デバイスにあるフラットと*x* *y*、直面していると返される*z*値をする必要がありますように、 `` 、 `` と`9.81`.
 
 ### プロパティ
 
