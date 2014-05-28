@@ -19,44 +19,44 @@
 
 # org.apache.cordova.device-motion
 
-Ce plugin permet d'accéder à l'accéléromètre de l'appareil. L'accéléromètre est un capteur de mouvement qui détecte la modification (*delta*) en mouvement par rapport à l'orientation actuelle de l'appareil, en trois dimensions le long de l'axe *x*, *y*et *z* .
+Questo plugin consente di accedere all'accelerometro del dispositivo. L'accelerometro è un sensore di movimento che rileva il cambiamento (*delta*) nel movimento relativo l'orientamento corrente del dispositivo, in tre dimensioni lungo l'asse *x*, *y*e *z* .
 
-## Installation
+## Installazione
 
     cordova plugin add org.apache.cordova.device-motion
     
 
-## Plates-formes prises en charge
+## Piattaforme supportate
 
-*   Amazon Fire OS
+*   Amazon fuoco OS
 *   Android
 *   BlackBerry 10
 *   Firefox OS
 *   iOS
-*   Paciarelli
-*   Windows Phone 7 et 8
+*   Tizen
+*   Windows Phone 7 e 8
 *   Windows 8
 
-## Méthodes
+## Metodi
 
 *   navigator.accelerometer.getCurrentAcceleration
 *   navigator.accelerometer.watchAcceleration
 *   navigator.accelerometer.clearWatch
 
-## Objets
+## Oggetti
 
-*   Acceleration
+*   Accelerazione
 
 ## navigator.accelerometer.getCurrentAcceleration
 
-Renvoie l'accélération en cours sur les axes *x*, *y*et *z* .
+Ottenere l'attuale accelerazione lungo gli assi *x*, *y*e *z* .
 
-Ces valeurs d'accélération sont retournées à la fonction callback `accelerometerSuccess`.
+I valori di accelerazione vengono restituiti per la `accelerometerSuccess` funzione di callback.
 
     navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
     
 
-### Exemple
+### Esempio
 
     function onSuccess(acceleration) {
         alert('Acceleration X: ' + acceleration.x + '\n' +
@@ -72,29 +72,29 @@ Ces valeurs d'accélération sont retournées à la fonction callback `accelerom
     navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
     
 
-### iOS Quirks
+### iOS stranezze
 
-*   iOS ne permet pas d'obtenir l'accélération en cours à un instant donné.
+*   iOS non riconosce il concetto di ottenere l'accelerazione della corrente in un dato punto.
 
-*   Vous devez observer l'accélération et capturer ses données à un intervalle de temps donné.
+*   Si deve guardare l'accelerazione e acquisire i dati di intervalli di tempo dato.
 
-*   De ce fait, la fonction `getCurrentAcceleration` renvoie la dernière valeur retournée par un appel à `watchAccelerometer`.
+*   Così, il `getCurrentAcceleration` funzione restituisce l'ultimo valore segnalato da un `watchAccelerometer` chiamare.
 
 ## navigator.accelerometer.watchAcceleration
 
-Récupère le dispositif actuel de `Acceleration` à intervalle régulier, l'exécution de la `accelerometerSuccess` fonction de rappel chaque fois. Spécifiez l'intervalle, en millisecondes, via le `acceleratorOptions` de l'objet `frequency` paramètre.
+Recupera il dispositivo di corrente `Acceleration` a intervalli regolari, eseguendo la `accelerometerSuccess` funzione di callback ogni volta. Specificare l'intervallo in millisecondi via la `acceleratorOptions` dell'oggetto `frequency` parametro.
 
-Le retourné regarder ID références intervalle de surveillance de l'accéléromètre et peut être utilisé avec `navigator.accelerometer.clearWatch` d'arrêter de regarder l'accéléromètre.
+L'oggetto restituito guardare ID riferimenti intervallo orologio di accelerometro e può essere utilizzato con `navigator.accelerometer.clearWatch` a smettere di guardare l'accelerometro.
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
                                                            [accelerometerOptions]);
     
 
-*   **accelerometerOptions**: Un objet avec les clés facultatives suivantes : 
-    *   **frequency**: Fréquence de récupération de l'`Acceleration` en millisecondes. *(Number)* (Défaut : 10000)
+*   **accelerometerOptions**: Un oggetto con le seguenti chiavi opzionali: 
+    *   **frequenza**: la frequenza di recuperare il `Acceleration` in millisecondi. *(Numero)* (Default: 10000)
 
-### Exemple
+### Esempio
 
     function onSuccess(acceleration) {
         alert('Acceleration X: ' + acceleration.x + '\n' +
@@ -112,20 +112,20 @@ Le retourné regarder ID références intervalle de surveillance de l'accéléro
     var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     
 
-### iOS Quirks
+### iOS stranezze
 
-L'API appelle la fonction de callback de succès à l'intervalle demandé mais restreint l'éventail des demandes à l'appareil entre 40ms et 1000ms. Par exemple, si vous demandez un intervalle de 3 secondes, (3000ms), l'API demande des données de l'appareil toutes les 1 seconde, mais exécute seulement le callback de succès toutes les 3 secondes.
+L'API chiama la funzione di callback di successo nell'intervallo richiesto, ma limita la gamma di richieste alla periferica tra 40ms e 1000ms. Ad esempio, se si richiede un intervallo di 3 secondi, (3000ms), l'API richiede i dati dal dispositivo ogni secondo, ma esegue solo il callback di successo ogni 3 secondi.
 
 ## navigator.accelerometer.clearWatch
 
-Arrêter la surveillance du `Acceleration` référencée par le paramètre `watchID`.
+Smettere di guardare il `Acceleration` fanno riferimento il `watchID` parametro.
 
     navigator.accelerometer.clearWatch(watchID);
     
 
-*   **watchID**: l'ID retourné par`navigator.accelerometer.watchAcceleration`.
+*   **watchID**: l'ID restituito da`navigator.accelerometer.watchAcceleration`.
 
-### Exemple
+### Esempio
 
     var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     
@@ -134,13 +134,13 @@ Arrêter la surveillance du `Acceleration` référencée par le paramètre `watc
     navigator.accelerometer.clearWatch(watchID);
     
 
-## Accélération
+## Accelerazione
 
-Contient les données `Accelerometer` capturées à un moment donné dans le temps. Valeurs d'accélération comprennent l'effet de la pesanteur (9,81 m/s ^ 2), de sorte que lorsqu'un périphérique se trouve plat et face vers le haut, *x*, *y*, et *z* valeurs retournées doivent être `` , `` , et`9.81`.
+Contiene `Accelerometer` dati acquisiti in un punto specifico nel tempo. I valori di accelerazione includono l'effetto della gravità (9,81 m/s ^ 2), in modo che quando un dispositivo si trova piatta e rivolto in su, *x*, *y*, e *z* valori restituiti devono essere `` , `` , e`9.81`.
 
-### Propriétés
+### Proprietà
 
-*   **x**: Valeur de l'accélération sur l'axe des x. (en m/s^2) *(Number)*
-*   **y**: Valeur de l'accélération sur l'axe des y. (en m/s^2) *(Number)*
-*   **y**: Valeur de l'accélération sur l'axe des z. (en m/s^2) *(Number)*
-*   **timestamp**: Date de création en millisecondes. *(DOMTimeStamp)*
+*   **x**: quantità di accelerazione sull'asse x. (in m/s ^ 2) *(Numero)*
+*   **y**: quantità di accelerazione sull'asse y. (in m/s ^ 2) *(Numero)*
+*   **z**: quantità di accelerazione sull'asse z. (in m/s ^ 2) *(Numero)*
+*   **timestamp**: creazione timestamp in millisecondi. *(DOMTimeStamp)*

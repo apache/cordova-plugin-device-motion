@@ -19,44 +19,44 @@
 
 # org.apache.cordova.device-motion
 
-Este plugin proporciona acceso a acelerómetro del dispositivo. El acelerómetro es un sensor de movimiento que detecta el cambio (*delta*) en movimiento con respecto a la orientación actual del dispositivo, en tres dimensiones sobre el eje *x*, *y*y *z* .
+這個外掛程式提供了對設備的加速度計的訪問。 加速度計是動作感應器檢測到的更改 (*三角洲*) 在相對於當前的設備方向，在三個維度沿*x*、 *y*和*z*軸運動。
 
-## Instalación
+## 安裝
 
     cordova plugin add org.apache.cordova.device-motion
     
 
-## Plataformas soportadas
+## 支援的平臺
 
-*   Amazon fuego OS
-*   Android
-*   BlackBerry 10
-*   Firefox OS
+*   亞馬遜火 OS
+*   Android 系統
+*   黑莓 10
+*   火狐瀏覽器作業系統
 *   iOS
 *   Tizen
-*   Windows Phone 7 y 8
+*   Windows Phone 7 和 8
 *   Windows 8
 
-## Métodos
+## 方法
 
 *   navigator.accelerometer.getCurrentAcceleration
 *   navigator.accelerometer.watchAcceleration
 *   navigator.accelerometer.clearWatch
 
-## Objetos
+## 物件
 
-*   Acceleration
+*   加速度
 
 ## navigator.accelerometer.getCurrentAcceleration
 
-Tienes la aceleración actual a lo largo de los ejes *x*, *y*y *z* .
+獲取當前加速沿*x*、 *y*和*z*軸。
 
-Estos valores de aceleración son devueltos a la `accelerometerSuccess` función de callback.
+這些加速度值將返回到 `accelerometerSuccess` 回呼函數。
 
     navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
     
 
-### Ejemplo
+### 示例
 
     function onSuccess(acceleration) {
         alert('Acceleration X: ' + acceleration.x + '\n' +
@@ -72,29 +72,29 @@ Estos valores de aceleración son devueltos a la `accelerometerSuccess` función
     navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
     
 
-### iOS rarezas
+### iOS 的怪癖
 
-*   iOS no reconoce el concepto de conseguir la aceleración actual en cualquier momento dado.
+*   iOS 不會認識到在任何給定的點獲取當前加速度的概念。
 
-*   Debes ver la aceleración y capturar los datos en determinados intervalos de tiempo.
+*   你必須看加速和捕獲的資料在特定的時間間隔。
 
-*   Así, el `getCurrentAcceleration` función rinde el último valor reportado de una `watchAccelerometer` llamada.
+*   因此， `getCurrentAcceleration` 收益率從報告的最後一個值的函數 `watchAccelerometer` 調用。
 
 ## navigator.accelerometer.watchAcceleration
 
-Recupera el dispositivo actual de `Acceleration` a intervalos regulares, ejecutar el `accelerometerSuccess` función callback cada vez. Especificar el intervalo en milisegundos mediante la `acceleratorOptions` del objeto `frequency` parámetro.
+檢索該設備的當前 `Acceleration` 間隔時間定期，執行 `accelerometerSuccess` 回呼函數每次。 指定的時間間隔，以毫秒為單位通過 `acceleratorOptions` 物件的 `frequency` 參數。
 
-El vuelto ver referencias ID intervalo del acelerómetro reloj y puede ser utilizado con `navigator.accelerometer.clearWatch` para dejar de ver el acelerómetro.
+返回的觀看 ID 引用加速度計的手錶時間間隔，並可以用 `navigator.accelerometer.clearWatch` 來停止看加速度計。
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
                                                            [accelerometerOptions]);
     
 
-*   **accelerometerOptions**: Un objeto con las llaves opcionales siguientes: 
-    *   **frecuencia**: frecuencia con la que recuperar la `Acceleration` en milisegundos. *(Número)* (Por defecto: 10000)
+*   **accelerometerOptions**： 具有以下可選的鍵的物件： 
+    *   **頻率**： 經常如何檢索 `Acceleration` 以毫秒為單位。*（人數）*（預設值： 10000）
 
-### Ejemplo
+### 示例
 
     function onSuccess(acceleration) {
         alert('Acceleration X: ' + acceleration.x + '\n' +
@@ -112,20 +112,20 @@ El vuelto ver referencias ID intervalo del acelerómetro reloj y puede ser utili
     var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     
 
-### iOS rarezas
+### iOS 的怪癖
 
-La API llama a la función de devolución de llamada de éxito en el intervalo solicitado, pero restringe la gama de solicitudes que el dispositivo entre 40ms y 1000ms. Por ejemplo, si usted solicita un intervalo de 3 segundos, (3000ms), la API pide datos desde el dispositivo cada 1 segundo, pero sólo ejecuta el callback de éxito cada 3 segundos.
+API 呼叫成功的回呼函數的時間間隔的要求，但到 40ms年之間設備限制所請求的範圍和 1000ms。 例如，如果請求的時間間隔為 3 秒，(3000ms) API 請求資料從設備每隔 1 秒，但只有執行成功回檔每隔 3 秒。
 
 ## navigator.accelerometer.clearWatch
 
-Dejar de ver la `Acceleration` que se hace referencia por la `watchID` parámetro.
+停止看 `Acceleration` 引用的 `watchID` 參數。
 
     navigator.accelerometer.clearWatch(watchID);
     
 
-*   **watchID**: el identificador devuelto por`navigator.accelerometer.watchAcceleration`.
+*   **watchID**： 由返回的 ID`navigator.accelerometer.watchAcceleration`.
 
-### Ejemplo
+### 示例
 
     var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     
@@ -134,13 +134,13 @@ Dejar de ver la `Acceleration` que se hace referencia por la `watchID` parámetr
     navigator.accelerometer.clearWatch(watchID);
     
 
-## Aceleración
+## 加速度
 
-Contiene `Accelerometer` datos capturados en un punto específico en el tiempo. Valores de aceleración incluyen el efecto de la gravedad (9,81 m/s ^ 2), de modo que cuando se encuentra un dispositivo plano y hacia arriba, *x*, *y*, y *z* valores devueltos deben ser `` , `` , y`9.81`.
+包含 `Accelerometer` 在時間中的特定點捕獲的資料。 加速度值包括引力的影響 (9.81 m/s ^2)，因此當設備謊言平面和麵朝上， *x*、 *y*，和*z*返回的值應該是 `` ， `` ，和`9.81`.
 
-### Propiedades
+### 屬性
 
-*   **x**: cantidad de aceleración en el eje x. (en m/s ^ 2) *(Número)*
-*   **y**: cantidad de aceleración en el eje y. (en m/s ^ 2) *(Número)*
-*   **z**: cantidad de aceleración en el eje z. (en m/s ^ 2) *(Número)*
-*   **timestamp**: fecha y hora creación en milisegundos. *(DOMTimeStamp)*
+*   **x**： 在 X 軸上的加速度量。（在 m/s ^2)*（人數）*
+*   **y**： 在 y 軸上的加速度量。（在 m/s ^2)*（人數）*
+*   **z**： 在 Z 軸上的加速度量。（在 m/s ^2)*（人數）*
+*   **時間戳記**： 創建時間戳記以毫秒為單位。*() DOMTimeStamp*
