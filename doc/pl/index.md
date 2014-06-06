@@ -19,37 +19,37 @@
 
 # org.apache.cordova.device-motion
 
-Ten plugin umożliwia dostęp do urządzenia akcelerometr. Akcelerometr jest czujnik ruchu, który wykrywa zmiany (*delta*) w ruchu względem bieżącej orientacji urządzenia, w trzech wymiarach na osi *x*, *y*i *z* .
+Ten plugin umożliwia dostęp do urządzenia akcelerometr. Akcelerometr jest czujnikiem ruchu, który wykrywa zmiany (_delta_) w ruchu względem bieżącej orientacji urządzenia, w trzech wymiarach na osi _x_, _y_ i _z_ .
 
-## Instalacji
+## Instalacja
 
     cordova plugin add org.apache.cordova.device-motion
     
 
 ## Obsługiwane platformy
 
-*   Amazon ogień OS
-*   Android
-*   Jeżyna 10
-*   Firefox OS
-*   iOS
-*   Tizen
-*   Windows Phone 7 i 8
-*   Windows 8
+-   Amazon Fire OS
+-   Android
+-   BlackBerry 10
+-   Firefox OS
+-   iOS
+-   Tizen
+-   Windows Phone 7 i 8
+-   Windows 8
 
 ## Metody
 
-*   navigator.accelerometer.getCurrentAcceleration
-*   navigator.accelerometer.watchAcceleration
-*   navigator.accelerometer.clearWatch
+-   navigator.accelerometer.getCurrentAcceleration
+-   navigator.accelerometer.watchAcceleration
+-   navigator.accelerometer.clearWatch
 
 ## Obiekty
 
-*   Acceleration
+-   Acceleration
 
 ## navigator.accelerometer.getCurrentAcceleration
 
-Pobiera aktualne przyspieszenie wzdłuż osi *x*, *y* oraz *z*.
+Pobiera aktualne przyspieszenie wzdłuż osi _x_, _y_ oraz _z_.
 
 Wartości przyspieszeń są zwracane funkcji `accelerometerSuccess`.
 
@@ -72,27 +72,27 @@ Wartości przyspieszeń są zwracane funkcji `accelerometerSuccess`.
     navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
     
 
-### iOS dziwactwa
+### wyjątki iOS 
 
-*   iOS nie rozpoznaje koncepcji pobrania aktualnego przyspieszenia w danym punkcie.
+- iOS nie rozpoznaje koncepcji pobrania aktualnego przyspieszenia w danym punkcie.
 
-*   Musisz obserwować przyspieszenie i przejmować dane w określonych odstępach czasu.
+- Musisz obserwować przyspieszenie i przejmować dane w określonych odstępach czasu.
 
-*   Podsumowując, funkcja `getCurrentAcceleration` zwraca ostatnią wartość zgłoszoną przez wywołanie `watchAccelerometer`.
+- Podsumowując, funkcja `getCurrentAcceleration` zwraca ostatnią wartość zgłoszoną przez wywołanie `watchAccelerometer`.
 
 ## navigator.accelerometer.watchAcceleration
 
-Pobiera urządzenie w bieżącym `Acceleration` w regularnych odstępach czasu, wykonywanie `accelerometerSuccess` funkcja wywołania zwrotnego za każdym razem. Określ interwał w milisekundach przez `acceleratorOptions` obiektu `frequency` parametr.
+Pobiera urządzenie w bieżącym `Acceleration` w regularnych odstępach czasu, wywołując za każdym razem wywołanie zwrotne `accelerometerSuccess`. Określa interwał w milisekundach przez parametr `frequency` obiektu `acceleratorOptions`.
 
-Zwracane obejrzeć identyfikator odniesienia akcelerometr zegarek interwał i może być używany z `navigator.accelerometer.clearWatch` do zatrzymania, obejrzeniu akcelerometru.
+Zwracany identyfikator obserwacji (watch ID) jest odniesieniem do interwału observacji i może być używany z `navigator.accelerometer.clearWatch` do zatrzymania obserwowacji akcelerometru.
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
                                                            [accelerometerOptions]);
     
 
-*   **accelerometerOptions**: Obiekt z opcjonalnie następujące klucze: 
-    *   **frequency**: Jak często uzyskuje dane z `Acceleration` w milisekundach. *(Liczba)* (Domyślnie: 10000)
+-   __accelerometerOptions__: Obiekt z następującymi opcjonalnymi kluczami: 
+    -   __frequency__: Jak często odbierać dane z `Acceleration` w milisekundach. _(Number)_ (Domyślnie: 10000)
 
 ### Przykład
 
@@ -107,14 +107,14 @@ Zwracane obejrzeć identyfikator odniesienia akcelerometr zegarek interwał i mo
         alert('onError!');
     };
     
-    var options = { frequency: 3000 };  // Update every 3 seconds
+    var options = { frequency: 3000 };  // Uaktualniaj co 3 sekundy
     
     var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     
 
-### iOS dziwactwa
+### wyjątki iOS
 
-API wywołuje funkcję zwrotną success w żądanym przedziale ale zakres żądania do urządzenia jest ograniczony przedziałem od 40ms do 1000ms. Dla przykładu, jeśli żądasz 3 sekundowy przedział (3000ms), API pobierze dane z urządzenia co 1 sekundę, ale wykona funkcję zwrotną success co każde 3 sekundy.
+API wywołuje funkcję zwrotną po upłynięciu żądanego interwału, ale zakres żądania do urządzenia jest ograniczony przedziałem od 40ms do 1000ms. Dla przykładu, jeśli żądasz 3 sekundowy interwał (3000ms), API pobierze dane z urządzenia co 1 sekundę, ale wykona funkcję zwrotną co każde 3 sekundy.
 
 ## navigator.accelerometer.clearWatch
 
@@ -123,24 +123,24 @@ Przestaje obserwować `Acceleration` odnoszące się do parametru `watchID`.
     navigator.accelerometer.clearWatch(watchID);
     
 
-*   **watchID**: Identyfikator zwrócony przez`navigator.accelerometer.watchAcceleration`.
+-   __watchID__: Identyfikator zwrócony przez`navigator.accelerometer.watchAcceleration`.
 
 ### Przykład
 
     var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     
-    // ... later on ...
+    // ... i dalej ...
     
     navigator.accelerometer.clearWatch(watchID);
     
 
 ## Przyspieszenie
 
-Zawiera przechwycone w danej chwili dane z `akcelerometru`. Wartości przyśpieszenia to efekt grawitacji (9.81 m/s ^ 2), tak, że kiedy urządzenie znajduje się płaska i górę, *x*, *y*, i *z* wartości zwracane powinny być `` , `` , i`9.81`.
+Zawiera przechwycone w danej chwili dane z obiektu `Akcelerometer`. Wartości przyśpieszenia to efekt grawitacji (9.81 m/s^2), tak, że kiedy urządzenie znajduje się w pozycji płasko i górę, _x_, _y_, i _z_ wartości zwracane powinny być `` , `` , i`9.81`.
 
 ### Właściwości
 
-*   **x**: Wielkość przyśpieszenia na osi x. (w m/s^2) *(Liczba)*
-*   **y**: Wielkość przyśpieszenia na osi y. (w m/s^2) *(Liczba)*
-*   **z**: Wielkość przyśpieszenia na osi z. (w m/s^2) *(Liczba)*
-*   **timestamp**: Znacznik czasu w milisekundach. *(DOMTimeStamp)*
+-   __x__: Wielkość przyśpieszenia na osi x. (w m/s^2) _(Number)_
+-   __y__: Wielkość przyśpieszenia na osi y. (w m/s^2) _(Number)_
+-   __z__: Wielkość przyśpieszenia na osi z. (w m/s^2) _(Number)_
+-   __timestamp__: Znacznik czasu w milisekundach. _(DOMTimeStamp)_
