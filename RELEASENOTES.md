@@ -61,3 +61,10 @@
 * CB-6460: Update license headers
 * CB-6465: Add license headers to Tizen code
 * Add NOTICE file
+
+### 0.2.8 (Jun 05, 2014)
+* CB-6127 Spanish and French Translations added. Github close #10. Github close #12. Github close #11
+* ubuntu: don't destroy callback after use
+* CB-6798 Add license
+* CB-6491 add CONTRIBUTING.md
+* FFOS added to supported platforms
