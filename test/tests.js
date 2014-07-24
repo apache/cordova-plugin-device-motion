@@ -264,6 +264,13 @@ exports.defineManualTests = function (contentEl, createActionButton) {
 
     /******************************************************************************/
 
+    var accelerometer_tests = '<div id="getAcceleration"></div>' +
+        'Expected result: Will update the status box with X, Y, and Z values when pressed. Status will read "Stopped"' +
+        '<p/> <div id="watchAcceleration"></div>' +
+        'Expected result: When pressed, will start a watch on the accelerometer and update X,Y,Z values when movement is sensed. Status will read "Running"' +
+        '<p/> <div id="clearAcceleration"></div>' +
+        'Expected result: Will clear the accelerometer watch, so X,Y,Z values will no longer be updated. Status will read "Stopped"';
+
     contentEl.innerHTML = '<div id="info">' +
         'Status: <span id="accel_status">Stopped</span>' +
         '<table width="100%">' +
@@ -271,17 +278,17 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         '<tr><td width="20%">Y:</td><td id="y"> </td></tr>' +
         '<tr><td width="20%">Z:</td><td id="z"> </td></tr>' +
         '</table></div>' +
-        '<div id="actions"></div>';
+        accelerometer_tests;
 
     createActionButton('Get Acceleration', function () {
         getAccel();
-    }, 'actions');
+    }, 'getAcceleration');
 
     createActionButton('Start Watch', function () {
         watchAccel();
-    }, 'actions');
+    }, 'watchAcceleration');
 
     createActionButton('Clear Watch', function () {
         stopAccel();
-    }, 'actions');
+    }, 'clearAcceleration');
 };
