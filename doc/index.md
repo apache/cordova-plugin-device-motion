@@ -94,10 +94,10 @@ accelerometer.
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
-                                                           [accelerometerOptions]);
+                                                           accelerometerOptions);
 
 - __accelerometerOptions__: An object with the following optional keys:
-  - __frequency__: How often to retrieve the `Acceleration` in milliseconds. _(Number)_ (Default: 10000)
+  - __period__: requested period of calls to accelerometerSuccess with acceleration data in Milliseconds. _(Number)_ (Default: 10000)
 
 
 ###  Example
