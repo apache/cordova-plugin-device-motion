@@ -88,11 +88,11 @@
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
-                                                           [accelerometerOptions]);
+                                                           accelerometerOptions);
     
 
 *   **accelerometerOptions**: 次のオプションのキーを持つオブジェクト: 
-    *   **周波数**: 取得する頻度、 `Acceleration` (ミリ秒単位)。*(数)*(デフォルト: 10000）
+    *   **期間**: ミリ秒単位での加速度データと accelerometerSuccess への呼び出しの要求された期間。*(数)*(デフォルト: 10000）
 
 ### 例
 

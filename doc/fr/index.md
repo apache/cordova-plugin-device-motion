@@ -88,11 +88,11 @@ Le retourné regarder ID références intervalle de surveillance de l'accéléro
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
-                                                           [accelerometerOptions]);
+                                                           accelerometerOptions);
     
 
 *   **accelerometerOptions**: Un objet avec les clés facultatives suivantes : 
-    *   **frequency**: Fréquence de récupération de l'`Acceleration` en millisecondes. *(Number)* (Défaut : 10000)
+    *   **période**: période demandée d'appels à accelerometerSuccess avec les données d'accélération en millisecondes. *(Nombre)* (Par défaut : 10000)
 
 ### Exemple
 

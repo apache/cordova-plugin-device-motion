@@ -88,11 +88,11 @@
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
-                                                           [accelerometerOptions]);
+                                                           accelerometerOptions);
     
 
 *   **accelerometerOptions**: 다음 선택적 키 개체: 
-    *   **주파수**: 검색 하는 `Acceleration` (밀리초)입니다. *(수)* (기본: 10000)
+    *   **기간**: 밀리초에서 가속 데이터와 accelerometerSuccess에 대 한 호출의 요청된 기간. *(수)* (기본: 10000)
 
 ### 예를 들어
 

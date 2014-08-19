@@ -88,11 +88,11 @@
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
-                                                           [accelerometerOptions]);
+                                                           accelerometerOptions);
     
 
 *   **accelerometerOptions**: Объект с следующие необязательные свойствами: 
-    *   **frequency**: частота обновленя данных получаемых из объекта `Acceleration` в миллисекундах. *(Число)* (По умолчанию: 10000)
+    *   **период**: запрошенный период звонков на accelerometerSuccess с ускорение данных в миллисекундах. *(Число)* (По умолчанию: 10000)
 
 ### Пример
 

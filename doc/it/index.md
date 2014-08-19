@@ -88,11 +88,11 @@ L'oggetto restituito guardare ID riferimenti intervallo orologio di accelerometr
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
-                                                           [accelerometerOptions]);
+                                                           accelerometerOptions);
     
 
 *   **accelerometerOptions**: Un oggetto con le seguenti chiavi opzionali: 
-    *   **frequenza**: la frequenza di recuperare il `Acceleration` in millisecondi. *(Numero)* (Default: 10000)
+    *   **periodo**: periodo richiesto di chiamate a accelerometerSuccess con i dati di accelerazione in millisecondi. *(Numero)* (Default: 10000)
 
 ### Esempio
 

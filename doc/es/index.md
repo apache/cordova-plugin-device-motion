@@ -88,11 +88,11 @@ El vuelto ver referencias ID intervalo del acelerómetro reloj y puede ser utili
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
-                                                           [accelerometerOptions]);
+                                                           accelerometerOptions);
     
 
 *   **accelerometerOptions**: Un objeto con las llaves opcionales siguientes: 
-    *   **frecuencia**: frecuencia con la que recuperar la `Acceleration` en milisegundos. *(Número)* (Por defecto: 10000)
+    *   **periodo**: periodo solicitado de llamadas a accelerometerSuccess con los datos de aceleración en milisegundos. *(Número)* (Por defecto: 10000)
 
 ### Ejemplo
 

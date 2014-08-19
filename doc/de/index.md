@@ -88,11 +88,11 @@ Das zurückgegebene ID Referenzen der Beschleunigungsmesser Uhr Intervall zu seh
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
-                                                           [accelerometerOptions]);
+                                                           accelerometerOptions);
     
 
 *   **accelerometerOptions**: Ein Objekt mit den folgenden optionalen Elementen: 
-    *   **Häufigkeit**: wie oft abgerufen werden die `Acceleration` in Millisekunden. *(Anzahl)* (Default: 10000)
+    *   **Zeitraum**: gewünschten Zeitraum der Aufrufe von AccelerometerSuccess mit Beschleunigungsdaten in Millisekunden. *(Anzahl)* (Default: 10000)
 
 ### Beispiel
 

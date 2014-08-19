@@ -88,11 +88,11 @@
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
-                                                           [accelerometerOptions]);
+                                                           accelerometerOptions);
     
 
 *   **accelerometerOptions**： 具有以下可選的鍵的物件： 
-    *   **頻率**： 經常如何檢索 `Acceleration` 以毫秒為單位。*（人數）*（預設值： 10000）
+    *   **期間**： 請求的期間的調用的 accelerometerSuccess 與加速度資料以毫秒為單位。*（人數）*（預設值： 10000）
 
 ### 示例
 

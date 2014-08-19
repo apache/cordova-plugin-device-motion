@@ -88,11 +88,11 @@ Zwracane watch ID jest odniesieniem do obserwacji akcelerometru i może być uż
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
-                                                           [accelerometerOptions]);
+                                                           accelerometerOptions);
     
 
 *   **accelerometerOptions**: Obiekt z następującymi opcjonalnymi kluczami: 
-    *   **frequency**: Jak często pozyskiwane będą dane z `Acceleration` w milisekundach. *(Number)* (Domyślnie: 10000)
+    *   **okres**: żądany okres wzywa do accelerometerSuccess z danych przyspieszenia w milisekundach. *(Liczba)* (Domyślnie: 10000)
 
 ### Przykład
 
