@@ -33,6 +33,7 @@ axis.
 - Amazon Fire OS
 - Android
 - BlackBerry 10
+- Browser
 - Firefox OS
 - iOS
 - Tizen
@@ -73,6 +74,10 @@ callback function.
     };
 
     navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+
+### Browser Quirks
+
+Values for X, Y, Z motion are all randomly generated in order to simulate the accelerometer.
 
 ### iOS Quirks
 
