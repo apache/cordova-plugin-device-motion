@@ -31,6 +31,7 @@ Questo plugin consente di accedere all'accelerometro del dispositivo. L'accelero
 *   Amazon fuoco OS
 *   Android
 *   BlackBerry 10
+*   Browser
 *   Firefox OS
 *   iOS
 *   Tizen
@@ -71,6 +72,10 @@ I valori di accelerazione vengono restituiti per la `accelerometerSuccess` funzi
     
     navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
     
+
+### Stranezze browser
+
+I valori per X, Y, movimento Z sono tutti generati casualmente in ordine per simulare l'accelerometro.
 
 ### iOS stranezze
 

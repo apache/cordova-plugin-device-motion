@@ -31,6 +31,7 @@
 *   アマゾン火 OS
 *   アンドロイド
 *   ブラックベリー 10
+*   ブラウザー
 *   Firefox の OS
 *   iOS
 *   Tizen
@@ -71,6 +72,10 @@
     
     navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
     
+
+### ブラウザーの癖
+
+値 X、Y、Z モーションは、加速度計をシミュレートするためにすべてのランダムに生成される順序です。
 
 ### iOS の癖
 

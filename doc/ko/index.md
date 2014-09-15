@@ -31,6 +31,7 @@
 *   아마존 화재 운영 체제
 *   안 드 로이드
 *   블랙베리 10
+*   브라우저
 *   Firefox 운영 체제
 *   iOS
 *   Tizen
@@ -71,6 +72,10 @@
     
     navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
     
+
+### 브라우저 만지면
+
+X, Y 값 Z 모션은가 속도계 시뮬레이션 모든에 임의로 생성 된 순서입니다.
 
 ### iOS 단점
 
