@@ -77,7 +77,7 @@ Wartości przyspieszeń są zwracane w argumencie funkcji `accelerometerSuccess`
 
 Wartości dla osi X, Y, Z ruchu są losowo generowane w celu symulacji akcelerometr.
 
-### iOS dziwactwa
+### Dziwactwa iOS
 
 *   W iOS nie wprowadzono możliwości zmierzenia aktualnego przyspieszenia w dowolnym punkcie.
 
@@ -87,9 +87,9 @@ Wartości dla osi X, Y, Z ruchu są losowo generowane w celu symulacji akcelerom
 
 ## navigator.accelerometer.watchAcceleration
 
-Pobiera urządzenie w bieżącym `Acceleration` w regularnych odstępach czasu, wykonywanie `accelerometerSuccess` funkcja wywołania zwrotnego za każdym razem. Określ interwał w milisekundach przez `acceleratorOptions` obiektu `frequency` parametr.
+Pobiera aktualny obiekt `Acceleration` w regularnych odstępach czasu, za każdym razem wywołując funkcję zwrotną `accelerometerSuccess`. Interwał jest określony w milisekundach w parametrze `frequency` obiektu `acceleratorOptions`.
 
-Zwracane obejrzeć identyfikator odniesienia akcelerometr zegarek interwał i może być używany z `navigator.accelerometer.clearWatch` do zatrzymania, obejrzeniu akcelerometru.
+Zwracane watch ID jest odniesieniem do obserwacji akcelerometru i może być użyty w `navigator.accelerometer.clearWatch` do zatrzymania tego procesu.
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
@@ -117,13 +117,13 @@ Zwracane obejrzeć identyfikator odniesienia akcelerometr zegarek interwał i mo
     var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     
 
-### iOS dziwactwa
+### Dziwactwa iOS
 
-Interfejs API wymaga sukcesu funkcji wywołania zwrotnego w interwał żądana, ale ogranicza zakres żądania do urządzenia między 40ms i 1000ms. Na przykład jeśli poprosisz o odstępie 3 sekundy (3000ms), interfejs API żądania danych z urządzenia co 1 sekundę, ale tylko wykonuje wywołanie zwrotne sukces co 3 sekundy.
+API wywołuje funkcję zwrotną success w żądanym przedziale ale zakres żądania do urządzenia jest ograniczony przedziałem od 40ms do 1000ms. Dla przykładu, jeśli żądasz 3 sekundowy przedział (3000ms), API pobierze dane z urządzenia co 1 sekundę, ale wykona funkcję zwrotną success co każde 3 sekundy.
 
 ## navigator.accelerometer.clearWatch
 
-Przestać oglądać `Acceleration` odwołanie przez `watchID` parametru.
+Przestaje obserwować `Acceleration` odnoszące się do parametru `watchID`.
 
     navigator.accelerometer.clearWatch(watchID);
     
@@ -141,7 +141,7 @@ Przestać oglądać `Acceleration` odwołanie przez `watchID` parametru.
 
 ## Acceleration
 
-Zawiera `Accelerometer` dane przechwycone w określonym czasie. Wartości przyśpieszenia to efekt grawitacji (9.81 m/s ^ 2), tak, że kiedy urządzenie znajduje się płaska i górę, *x*, *y*, i *z* wartości zwracane powinny być `` , `` , i`9.81`.
+Zawiera przechwycone w danej chwili dane z `akcelerometru`. Wartości przyśpieszenia to efekt grawitacji (9.81 m/s ^ 2), tak, że kiedy urządzenie znajduje się w pozycji na płask i w górę, *x*, *y*, i *z* wartości zwracane powinny być `` , `` , i`9.81`.
 
 ### Właściwości
 

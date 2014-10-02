@@ -141,7 +141,7 @@ Beenden, beobachten die `Acceleration` verwiesen wird, durch die `watchID` Param
 
 ## Beschleunigung
 
-Enthält `Accelerometer` in der Zeit zu einem bestimmten Zeitpunkt erfassten Daten. Beschleunigungswerte sind die Auswirkungen der Schwerkraft (9.81 m/s ^ 2), so dass wenn ein Gerät flach und nach oben, *X*, *y liegt*, und *Z* -Werte zurückgegeben werden sollte `` , `` , und`9.81`.
+Zu einem bestimmten Zeitpunkt erfasste `Beschleunigungsmesser`-Daten. Beschleunigungswerte sind die Auswirkungen der Schwerkraft (9.81 m/s ^ 2), so dass wenn ein Gerät flach und nach oben, *X*, *y liegt*, und *Z* -Werte zurückgegeben werden sollte `` , `` , und`9.81`.
 
 ### Eigenschaften
 

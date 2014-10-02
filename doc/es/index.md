@@ -28,7 +28,7 @@ Este plugin proporciona acceso a acelerómetro del dispositivo. El acelerómetro
 
 ## Plataformas soportadas
 
-*   Amazon fuego OS
+*   Amazon fire OS
 *   Android
 *   BlackBerry 10
 *   Explorador
@@ -50,9 +50,9 @@ Este plugin proporciona acceso a acelerómetro del dispositivo. El acelerómetro
 
 ## navigator.accelerometer.getCurrentAcceleration
 
-Tienes la aceleración actual a lo largo de los ejes *x*, *y*y *z* .
+Tienes la aceleración actual a lo largo de los ejes *x*, *y* y *z*.
 
-Estos valores de aceleración son devueltos a la `accelerometerSuccess` función de callback.
+Estos valores de aceleración son devueltos a la función de devolución de llamada `accelerometerSuccess`.
 
     navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
     
@@ -83,7 +83,7 @@ Los valores para X, Y, movimiento Z son todo generada aleatoriamente en orden pa
 
 *   Debes ver la aceleración y capturar los datos en determinados intervalos de tiempo.
 
-*   Así, el `getCurrentAcceleration` función rinde el último valor reportado de una `watchAccelerometer` llamada.
+*   Así, la función de `getCurrentAcceleration` rinde el último valor informado de una llamada de `watchAccelerometer`.
 
 ## navigator.accelerometer.watchAcceleration
 
@@ -119,11 +119,11 @@ El vuelto ver referencias ID intervalo del acelerómetro reloj y puede ser utili
 
 ### iOS rarezas
 
-La API llama a la función de devolución de llamada de éxito en el intervalo solicitado, pero restringe la gama de solicitudes que el dispositivo entre 40ms y 1000ms. Por ejemplo, si usted solicita un intervalo de 3 segundos, (3000ms), la API solicita datos desde el dispositivo cada 1 segundo, pero sólo ejecuta el callback de éxito cada 3 segundos.
+La API llama a la función de devolución de llamada de éxito en el intervalo solicitado, pero restringe la gama de solicitudes para el dispositivo entre 40ms y 1000ms. Por ejemplo, si usted solicita un intervalo de 3 segundos, (3000ms), la API pide datos desde el dispositivo cada 1 segundo, pero sólo ejecuta el callback de éxito cada 3 segundos.
 
 ## navigator.accelerometer.clearWatch
 
-Dejar de mirar el `Acceleration` referenciado por el `watchID` parámetro.
+Deja de mirar la `aceleración` al que hace referencia el parámetro `watchID`.
 
     navigator.accelerometer.clearWatch(watchID);
     
@@ -132,20 +132,20 @@ Dejar de mirar el `Acceleration` referenciado por el `watchID` parámetro.
 
 ### Ejemplo
 
-    var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+    var watchID = navigator.accelerometer.watchAcceleration (onSuccess, onError, opciones);  
     
-    // ... later on ...
+    / /... adelante... 
     
     navigator.accelerometer.clearWatch(watchID);
     
 
-## Aceleración
+## Acceleration
 
-Contiene `Accelerometer` datos capturados en un punto específico en el tiempo. Valores de aceleración incluyen el efecto de la gravedad (9,81 m/s ^ 2), de modo que cuando se encuentra un dispositivo plano y hacia arriba, *x*, *y*, y *z* valores devueltos deben ser `` , `` , y`9.81`.
+Contiene data del `Accelerometer` capturada en un punto específico en el tiempo. Valores de aceleración incluyen el efecto de la gravedad (9,81 m/s ^ 2), de modo que cuando se encuentra un dispositivo plano y hacia arriba, *x*, *y*, y *z* valores devueltos deben ser `` , `` , y`9.81`.
 
 ### Propiedades
 
-*   **x**: cantidad de aceleración en el eje x. (en m/s ^ 2) *(Número)*
-*   **y**: cantidad de aceleración en el eje y. (en m/s ^ 2) *(Número)*
-*   **z**: cantidad de aceleración en el eje z. (en m/s ^ 2) *(Número)*
-*   **timestamp**: fecha y hora creación en milisegundos. *(DOMTimeStamp)*
+*   **x**: Cantidad de aceleración en el eje X. (en m/s^2) *(Number)*
+*   **y**: Cantidad de aceleración en el eje Y. (en m/s^2) *(Number)*
+*   **z**: Cantidad de aceleración en el eje Z. (en m/s^2) *(Number)*
+*   **timestamp**: Momento de la captura en milisegundos.*(DOMTimeStamp)*
