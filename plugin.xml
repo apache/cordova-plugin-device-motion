@@ -137,7 +137,14 @@
 
     <!-- windows8 -->
     <platform name="windows8">
-        <js-module src="src/windows8/AccelerometerProxy.js" name="AccelerometerProxy">
+        <js-module src="src/windows/AccelerometerProxy.js" name="AccelerometerProxy">
+            <merges target="" />
+        </js-module>
+    </platform>
+
+    <!-- windows -->
+    <platform name="windows">
+        <js-module src="src/windows/AccelerometerProxy.js" name="AccelerometerProxy">
             <merges target="" />
         </js-module>
     </platform>

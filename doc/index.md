@@ -46,8 +46,8 @@ Although the object is attached to the global scoped `navigator`, it is not avai
 - Firefox OS
 - iOS
 - Tizen
-- Windows Phone 7 and 8
-- Windows 8
+- Windows Phone 8
+- Windows
 
 ## Methods
 
