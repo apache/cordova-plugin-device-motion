@@ -42,13 +42,13 @@ module.exports = {
             // store our bound function
             this.onDataChanged = function(e) {
                 var a = e.reading;
-                win(new Acceleration(a.accelerationX,a.accelerationY,a.accelerationZ));
+                win(new Acceleration(a.accelerationX, a.accelerationY, a.accelerationZ), {keepCallback: true});
             };
             accel.addEventListener("readingchanged",this.onDataChanged);
 
             setTimeout(function(){
                 var a = accel.getCurrentReading();
-                win(new Acceleration(a.accelerationX,a.accelerationY,a.accelerationZ));
+                win(new Acceleration(a.accelerationX, a.accelerationY, a.accelerationZ), {keepCallback: true});
             },0); // async do later
         }
     },
