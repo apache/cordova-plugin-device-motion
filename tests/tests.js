@@ -20,6 +20,12 @@
 */
 
 exports.defineAutoTests = function () {
+    var isWindows = (cordova.platformId === "windows") || (cordova.platformId === "windows8"),
+     // Checking existence of accelerometer for windows platform 
+     // Assumed that accelerometer always exists on other platforms. Extend 
+     // condition to support accelerometer check on other platforms
+     isAccelExist = isWindows ? Windows.Devices.Sensors.Accelerometer.getDefault() !== null : true;
+
   describe('Accelerometer (navigator.accelerometer)', function () {
     var fail = function(done) {
       expect(true).toBe(false);
@@ -37,6 +43,10 @@ exports.defineAutoTests = function () {
       });
 
       it("accelerometer.spec.3 success callback should be called with an Acceleration object", function(done) {
+        // skip the test if Accelerometer doesn't exist on this device
+        if (!isAccelExist) {
+          pending();
+        }
         var win = function(a) {
           expect(a).toBeDefined();
           expect(a.x).toBeDefined();
@@ -54,6 +64,10 @@ exports.defineAutoTests = function () {
       });
 
       it("accelerometer.spec.4 success callback Acceleration object should have (reasonable) values for x, y and z expressed in m/s^2", function(done) {
+        // skip the test if Accelerometer doesn't exist on this device
+        if (!isAccelExist) {
+          pending();
+        }
         var reasonableThreshold = 15;
         var win = function(a) {
           expect(a.x).toBeLessThan(reasonableThreshold);
@@ -69,6 +83,10 @@ exports.defineAutoTests = function () {
       });
 
       it("accelerometer.spec.5 success callback Acceleration object should return a recent timestamp", function(done) {
+        // skip the test if Accelerometer doesn't exist on this device
+        if (!isAccelExist) {
+          pending();
+        }
         var veryRecently = (new Date()).getTime();
         // Need to check that dates returned are not vastly greater than a recent time stamp.
         // In case the timestamps returned are ridiculously high
@@ -96,6 +114,10 @@ exports.defineAutoTests = function () {
       });
 
       it("accelerometer.spec.7 success callback should be called with an Acceleration object", function(done) {
+        // skip the test if Accelerometer doesn't exist on this device
+        if (!isAccelExist) {
+          pending();
+        }
         var win = function(a) {
           expect(a).toBeDefined();
           expect(a.x).toBeDefined();
@@ -113,6 +135,10 @@ exports.defineAutoTests = function () {
       });
 
         it("accelerometer.spec.8 success callback Acceleration object should have (reasonable) values for x, y and z expressed in m/s^2", function(done) {
+          // skip the test if Accelerometer doesn't exist on this device
+          if (!isAccelExist) {
+            pending();
+          }
           var reasonableThreshold = 15;
           var win = function(a) {
             expect(a.x).toBeLessThan(reasonableThreshold);
@@ -128,6 +154,10 @@ exports.defineAutoTests = function () {
         });
 
         it("accelerometer.spec.9 success callback Acceleration object should return a recent timestamp", function(done) {
+          // skip the test if Accelerometer doesn't exist on this device
+          if (!isAccelExist) {
+            pending();
+          }
           var veryRecently = (new Date()).getTime();
           // Need to check that dates returned are not vastly greater than a recent time stamp.
           // In case the timestamps returned are ridiculously high
@@ -162,6 +192,10 @@ exports.defineAutoTests = function () {
       });
 
       it("accelerometer.spec.11 should clear an existing watch", function(done) {
+          // skip the test if Accelerometer doesn't exist on this device
+          if (!isAccelExist) {
+              pending();
+          }
           var id;
 
           // expect win to get called exactly once
