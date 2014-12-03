@@ -92,3 +92,10 @@
 * register tests using new style
 * update
 * Feature Branch: First attempt at new-style-tests
+
+### 0.2.11 (Dec 02, 2014)
+* CB-8083 Fix `accelerometer` callback on **Windows**
+* Renamed **Windows8** -> **Windows**
+* CB-7977 Mention `deviceready` in plugin docs
+* CB-7700 cordova-plugin-device-motion documentation translation: cordova-plugin-device-motion
+* CB-7571 Bump version of nested plugin to match parent plugin
