@@ -1,4 +1,4 @@
-/*
+﻿/*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -139,6 +139,19 @@ exports.defineAutoTests = function () {
           };
 
           id = navigator.accelerometer.watchAcceleration(win, fail.bind(null,done), {frequency:100});
+        });
+
+        it("accelerometer.spec.12 success callback should be preserved and called several times", function (done) {
+            var callbacksCallCount = 0,
+                callbacksCallTestCount = 3;
+
+            var win = function (a) {
+                if (callbacksCallCount++ < callbacksCallTestCount) return;
+                expect(typeof a).toBe('object');
+                done();
+            };
+
+            id = navigator.accelerometer.watchAcceleration(win, fail.bind(null, done), { frequency: 100 });
         });
     });
 
