@@ -19,12 +19,11 @@
 
 # org.apache.cordova.device-motion
 
-Ce plugin permet d'accéder à l'accéléromètre de l'appareil. L'accéléromètre est un capteur de mouvement qui détecte la modification (*delta*) en mouvement par rapport à l'orientation actuelle de l'appareil, en trois dimensions le long de l'axe *x*, *y*et *z* .
+Ce plugin permet d'accéder à l'accéléromètre de l'appareil. L'accéléromètre est un capteur de mouvement qui détecte la modification (*delta*) de mouvement par rapport à l'orientation actuelle de l'appareil, en trois dimensions, le long des axes *x*, *y* et *z* .
 
 ## Installation
 
     cordova plugin add org.apache.cordova.device-motion
-    
 
 ## Plates-formes prises en charge
 
@@ -75,11 +74,11 @@ Ces valeurs d'accélération sont retournées à la fonction callback `accelerom
 
 ### Bizarreries navigateur
 
-Les valeurs x, Y, motion de Z sont tous ordre généré de manière aléatoire dans pour simuler l'accéléromètre.
+Les valeurs X, Y, et Z sont toutes générées de manière aléatoire pour simuler l'accéléromètre.
 
-### iOS Quirks
+### Caprices d'iOS
 
-*   iOS ne permet pas d'obtenir l'accélération en cours à un instant donné.
+*   iOS ne permet pas d'obtenir l'accélération à un instant donné.
 
 *   Vous devez observer l'accélération et capturer ses données à un intervalle de temps donné.
 
@@ -87,9 +86,9 @@ Les valeurs x, Y, motion de Z sont tous ordre généré de manière aléatoire d
 
 ## navigator.accelerometer.watchAcceleration
 
-Récupère le dispositif actuel de `Acceleration` à intervalle régulier, l'exécution de la `accelerometerSuccess` fonction de rappel chaque fois. Spécifiez l'intervalle, en millisecondes, via le `acceleratorOptions` de l'objet `frequency` paramètre.
+Récupère l'accélération de l'appareil à un intervalle régulier, en exécutant la fonction callback `accelerometerSuccess` à chaque fois. Spécifiez l'intervalle, en millisecondes, via le paramètre `frequency` de l'objet `acceleratorOptions`.
 
-Le retourné regarder ID références intervalle de surveillance de l'accéléromètre et peut être utilisé avec `navigator.accelerometer.clearWatch` d'arrêter de regarder l'accéléromètre.
+L'ID retourné fait référence à l'intervalle de surveillance de l'accéléromètre et peut être utilisé avec `navigator.accelerometer.clearWatch` pour arrêter de regarder l'accéléromètre.
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
@@ -97,7 +96,7 @@ Le retourné regarder ID références intervalle de surveillance de l'accéléro
     
 
 *   **accelerometerOptions**: Un objet avec les clés facultatives suivantes : 
-    *   **période**: période demandée d'appels à accelerometerSuccess avec les données d'accélération en millisecondes. *(Nombre)* (Par défaut : 10000)
+    *   **period**: intervalle entre les appels à la fonction désignée par `accelerometerSuccess`, en millisecondes *(Nombre)* (Par défaut : 10000)
 
 ### Exemple
 
@@ -112,36 +111,36 @@ Le retourné regarder ID références intervalle de surveillance de l'accéléro
         alert('onError!');
     };
     
-    var options = { frequency: 3000 };  // Update every 3 seconds
+    var options = { frequency: 3000 };  // Mettre à jour toutes les 3 secondes
     
     var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     
 
-### iOS Quirks
+### Caprices d'iOS
 
-L'API appelle la fonction de rappel de succès à l'intervalle demandé, mais restreint l'éventail des demandes à l'appareil entre 40ms et 1000ms. Par exemple, si vous demandez un intervalle de 3 secondes, (3000ms), l'API demande des données de l'appareil toutes les 1 seconde, mais seulement exécute le rappel réussi toutes les 3 secondes.
+L'API appelle la fonction de rappel de succès à l'intervalle demandé, mais restreint l'éventail des demandes à l'appareil entre 40ms et 1000ms. Par exemple, si vous demandez un intervalle de 3 secondes, (3000ms), l'API demande des données de l'appareil toutes les 1 seconde, mais éxécutera seulement le rappel réussi toutes les 3 secondes.
 
 ## navigator.accelerometer.clearWatch
 
-Arrêter de regarder le `Acceleration` référencé par le `watchID` paramètre.
+Arrêter de regarder le `Acceleration` référencé par le paramètre `watchID`.
 
     navigator.accelerometer.clearWatch(watchID);
     
 
-*   **watchID**: l'ID retourné par`navigator.accelerometer.watchAcceleration`.
+*   **watchID**: l'ID retourné par `navigator.accelerometer.watchAcceleration`.
 
 ### Exemple
 
     var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     
-    // ... later on ...
+    // ... plus tard ...
     
     navigator.accelerometer.clearWatch(watchID);
     
 
 ## Accélération
 
-Contient `Accelerometer` données capturées à un point précis dans le temps. Valeurs d'accélération comprennent l'effet de la pesanteur (9,81 m/s ^ 2), de sorte que lorsqu'un périphérique se trouve plat et face vers le haut, *x*, *y*, et *z* valeurs retournées doivent être `` , `` , et`9.81`.
+Contient les données capturées par l'accéléromètre à un point précis dans le temps. Les valeurs d'accélération comprennent l'effet de la pesanteur (9,81 m/s ^ 2), de sorte que lorsqu'un périphérique se trouve à plat et face vers le haut, les valeurs *x*, *y*, et *z* retournées doivent être `0` , `0` , et `9.81`.
 
 ### Propriétés
 
