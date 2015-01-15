@@ -26,6 +26,7 @@ var cordova = require('cordova'),
 
 /* This is the actual implementation part that returns the result on Windows 8
 */
+var gConstant = -9.81;
 
 module.exports = {
     onDataChanged:null,
@@ -42,13 +43,13 @@ module.exports = {
             // store our bound function
             this.onDataChanged = function(e) {
                 var a = e.reading;
-                win(new Acceleration(a.accelerationX, a.accelerationY, a.accelerationZ), {keepCallback: true});
+                win(new Acceleration(a.accelerationX * gConstant, a.accelerationY * gConstant, a.accelerationZ * gConstant), {keepCallback: true});
             };
             accel.addEventListener("readingchanged",this.onDataChanged);
 
             setTimeout(function(){
                 var a = accel.getCurrentReading();
-                win(new Acceleration(a.accelerationX, a.accelerationY, a.accelerationZ), {keepCallback: true});
+                win(new Acceleration(a.accelerationX * gConstant, a.accelerationY * gConstant, a.accelerationZ * gConstant), {keepCallback: true});
             },0); // async do later
         }
     },
