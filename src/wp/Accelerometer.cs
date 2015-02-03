@@ -147,7 +147,7 @@ namespace WPCordovaClassLib.Cordova.Commands
                 DispatchCommandResult(new PluginResult(PluginResult.Status.IO_EXCEPTION, ErrorFailedToStart));
                 return;
             }
-            PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+            PluginResult result = new PluginResult(PluginResult.Status.OK);
             result.KeepCallback = true;
             DispatchCommandResult(result);
         }
