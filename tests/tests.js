@@ -172,6 +172,10 @@ exports.defineAutoTests = function () {
         });
 
         it("accelerometer.spec.12 success callback should be preserved and called several times", function (done) {
+            // skip the test if Accelerometer doesn't exist on this device
+            if (!isAccelExist) {
+              pending();
+            }
             var callbacksCallCount = 0,
                 callbacksCallTestCount = 3;
 
