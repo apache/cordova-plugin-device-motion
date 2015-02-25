@@ -1,0 +1,46 @@
+{
+  "name": "cordova-plugin-device-motion",
+  "version": "0.2.12-dev",
+  "description": "Cordova Device Motion Plugin",
+  "cordova": {
+    "id": "org.apache.cordova.device-motion",
+    "platforms": [
+      "firefoxos",
+      "android",
+      "amazon-fireos",
+      "ubuntu",
+      "ios",
+      "blackberry10",
+      "wp7",
+      "wp8",
+      "windows8",
+      "windows",
+      "tizen",
+      "browser"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-device-motion.git"
+  },
+  "keywords": [
+    "cordova",
+    "device",
+    "motion",
+    "ecosystem:cordova",
+    "cordova-firefoxos",
+    "cordova-android",
+    "cordova-amazon-fireos",
+    "cordova-ubuntu",
+    "cordova-ios",
+    "cordova-blackberry10",
+    "cordova-wp7",
+    "cordova-wp8",
+    "cordova-windows8",
+    "cordova-windows",
+    "cordova-tizen",
+    "cordova-browser"
+  ],
+  "author": "Apache Software Foundation",
+  "license": "Apache 2.0"
+}
