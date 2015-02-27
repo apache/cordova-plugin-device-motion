@@ -21,6 +21,16 @@
 
 Ten plugin umożliwia dostęp do akcelerometru. Akcelerometr jest czujnikiem ruchu, który wykrywa zmiany (*delta*) w ruchu względem bieżącej orientacji urządzenia, w trzech wymiarach na osi *x*, *y*i *z* .
 
+Dostęp odbywa się za pomocą obiektu globalnego `navigator.accelerometer`.
+
+Mimo, że obiekt jest dołączony do globalnego zakresu `navigator`, to nie dostępne dopiero po zdarzeniu `deviceready`.
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log(navigator.accelerometer);
+    }
+    
+
 ## Instalacja
 
     cordova plugin add org.apache.cordova.device-motion
@@ -35,8 +45,8 @@ Ten plugin umożliwia dostęp do akcelerometru. Akcelerometr jest czujnikiem ruc
 *   Firefox OS
 *   iOS
 *   Tizen
-*   Windows Phone 7 i 8
-*   Windows 8
+*   Windows Phone 8
+*   Windows
 
 ## Metody
 
@@ -50,9 +60,9 @@ Ten plugin umożliwia dostęp do akcelerometru. Akcelerometr jest czujnikiem ruc
 
 ## navigator.accelerometer.getCurrentAcceleration
 
-Zwraca aktualne przyspieszenie wzdłuż osi *x*, *y* oraz *z*.
+Uzyskać aktualne przyspieszenie wzdłuż osi *x*, *y* i *z*.
 
-Wartości przyspieszeń są zwracane w argumencie funkcji `accelerometerSuccess`.
+Te wartości przyspieszenia są zwracane do funkcji wywołania zwrotnego `accelerometerSuccess`.
 
     navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
     
@@ -87,9 +97,9 @@ Wartości dla osi X, Y, Z ruchu są losowo generowane w celu symulacji akcelerom
 
 ## navigator.accelerometer.watchAcceleration
 
-Pobiera aktualny obiekt `Acceleration` w regularnych odstępach czasu, za każdym razem wywołując funkcję zwrotną `accelerometerSuccess`. Interwał jest określony w milisekundach w parametrze `frequency` obiektu `acceleratorOptions`.
+Pobiera bieżącego urządzenia `Acceleration` w regularnych odstępach czasu, wykonywanie funkcji wywołania zwrotnego `accelerometerSuccess` każdorazowe. Określ interwał w milisekundach przez parametr obiektu `acceleratorOptions` `frequency`.
 
-Zwracane watch ID jest odniesieniem do obserwacji akcelerometru i może być użyty w `navigator.accelerometer.clearWatch` do zatrzymania tego procesu.
+Identyfikator zwrócony zegarek odwołuje akcelerometr zegarek interwał i może być używany z `navigator.accelerometer.clearWatch`, aby zatrzymać obejrzeniu akcelerometru.
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
@@ -119,11 +129,11 @@ Zwracane watch ID jest odniesieniem do obserwacji akcelerometru i może być uż
 
 ### Dziwactwa iOS
 
-API wywołuje funkcję zwrotną success w żądanym przedziale ale zakres żądania do urządzenia jest ograniczony przedziałem od 40ms do 1000ms. Dla przykładu, jeśli żądasz 3 sekundowy przedział (3000ms), API pobierze dane z urządzenia co 1 sekundę, ale wykona funkcję zwrotną success co każde 3 sekundy.
+Interfejs API wymaga sukcesu funkcji wywołania zwrotnego w interwał żądana, ale ogranicza zakres żądania do urządzenia między 40ms i 1000ms. Na przykład jeśli poprosisz o odstępie 3 sekundy (3000ms), interfejs API żądania danych z urządzenia co 1 sekundę, ale tylko wykonuje wywołanie zwrotne sukces co 3 sekundy.
 
 ## navigator.accelerometer.clearWatch
 
-Przestaje obserwować `Acceleration` odnoszące się do parametru `watchID`.
+Przestać oglądać `Acceleration` określany przez parametr `watchID`.
 
     navigator.accelerometer.clearWatch(watchID);
     
@@ -141,7 +151,7 @@ Przestaje obserwować `Acceleration` odnoszące się do parametru `watchID`.
 
 ## Acceleration
 
-Zawiera przechwycone w danej chwili dane z `akcelerometru`. Wartości przyśpieszenia to efekt grawitacji (9.81 m/s ^ 2), tak, że kiedy urządzenie znajduje się w pozycji na płask i w górę, *x*, *y*, i *z* wartości zwracane powinny być `` , `` , i`9.81`.
+Zawiera `Accelerometer` dane przechwycone w określonym czasie. Wartości przyśpieszenia to efekt grawitacji (9.81 m/s ^ 2), tak, że kiedy urządzenie znajduje się płaska i górę, *x*, *y*, i *z* wartości zwracane powinno być ``, `` i `9.81`.
 
 ### Właściwości
 

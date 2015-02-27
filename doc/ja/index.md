@@ -21,6 +21,16 @@
 
 このプラグインは、デバイスの加速度計へのアクセスを提供します。 加速度計の現在のデバイスの向き、 *x* *y*、および*z*軸に沿って 3 つの次元の相対運動の変更 (*デルタ*) を検出するモーション センサーです。
 
+アクセスは、グローバル `navigator.accelerometer` オブジェクトを介して。
+
+オブジェクトは、グローバル スコープの `ナビゲーター` に添付、それがないまで `deviceready` イベントの後。
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log(navigator.accelerometer);
+    }
+    
+
 ## インストール
 
     cordova plugin add org.apache.cordova.device-motion
@@ -35,8 +45,8 @@
 *   Firefox の OS
 *   iOS
 *   Tizen
-*   Windows Phone 7 と 8
-*   Windows 8
+*   Windows Phone 8
+*   Windows
 
 ## メソッド
 
@@ -50,9 +60,9 @@
 
 ## navigator.accelerometer.getCurrentAcceleration
 
-*X* *y*、および*z*軸に沿って現在の加速を取得します。
+*X* *y*、および *z* 軸に沿って現在の加速を取得します。
 
-これらの加速度値に返されます、 `accelerometerSuccess` コールバック関数。
+これらの加速度値が `accelerometerSuccess` コールバック関数に返されます。
 
     navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
     
@@ -87,9 +97,9 @@
 
 ## navigator.accelerometer.watchAcceleration
 
-取得、デバイスの現在 `Acceleration` 一定の間隔で実行する、 `accelerometerSuccess` コールバック関数するたびに。 経由でミリ秒単位で間隔を指定する、 `acceleratorOptions` オブジェクトの `frequency` パラメーター。
+たびに `accelerometerSuccess` コールバック関数を実行する定期的な間隔で、デバイスの現在の `Acceleration` を取得します。 `acceleratorOptions` オブジェクトの `frquency` パラメーターを介してミリ秒単位で間隔を指定します。
 
-返される ID の参照、加速度計腕時計間隔を見るし、で使用することができます `navigator.accelerometer.clearWatch` 、加速度計を見て停止します。
+返される時計 ID、加速度計腕時計間隔を参照し、加速度計を見て停止する `navigator.accelerometer.clearWatch` を使用することができます。
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
@@ -123,7 +133,7 @@ API は、要求された間隔で、成功コールバック関数を呼び出�
 
 ## navigator.accelerometer.clearWatch
 
-見て停止、 `Acceleration` によって参照される、 `watchID` パラメーター。
+`watchID` パラメーターによって参照される `加速` を見て停止します。
 
     navigator.accelerometer.clearWatch(watchID);
     
@@ -141,7 +151,7 @@ API は、要求された間隔で、成功コールバック関数を呼び出�
 
 ## 加速
 
-含まれています `Accelerometer` で特定の時点でキャプチャしたデータ。 加速度値のとおり重力の効果 (9.81 m/s ^2) デバイスにあるフラットと*x* *y*、直面していると返される*z*値をする必要がありますように、 `` 、 `` と`9.81`.
+特定の時点でキャプチャした `Accelerometer` データが含まれています。 加速度値のとおり重力の効果 (9.81 m/s ^2) デバイスにあるフラットと *x* *y*、直面していると返された *z* 値は `` ``、および `9.81` をする必要がありますように、.
 
 ### プロパティ
 

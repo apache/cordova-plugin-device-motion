@@ -21,6 +21,16 @@
 
 Dieses Plugin ermöglicht den Zugriff auf das Gerät Beschleunigungsmesser. Der Beschleunigungsmesser ist ein Bewegungssensor, der die Änderung (*Delta*) erkennt Bewegung im Verhältnis zu der aktuellen Geräte-Orientierung, in drei Dimensionen entlang der *x-*, *y-*und *Z* -Achse.
 
+Der Zugang ist über eine globale `navigator.accelerometer`-Objekt.
+
+Obwohl das Objekt mit der globalen Gültigkeitsbereich `navigator` verbunden ist, steht es nicht bis nach dem `Deviceready`-Ereignis.
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log(navigator.accelerometer);
+    }
+    
+
 ## Installation
 
     cordova plugin add org.apache.cordova.device-motion
@@ -35,8 +45,8 @@ Dieses Plugin ermöglicht den Zugriff auf das Gerät Beschleunigungsmesser. Der 
 *   Firefox OS
 *   iOS
 *   Tizen
-*   Windows Phone 7 und 8
-*   Windows 8
+*   Windows Phone 8
+*   Windows
 
 ## Methoden
 
@@ -50,9 +60,9 @@ Dieses Plugin ermöglicht den Zugriff auf das Gerät Beschleunigungsmesser. Der 
 
 ## navigator.accelerometer.getCurrentAcceleration
 
-Erhalten Sie die aktuelle Beschleunigung entlang der *x-*, *y-*und *Z* -Achsen.
+Erhalten Sie die aktuelle Beschleunigung entlang der *x-*, *y-* und *z*-Achsen.
 
-Diese Beschleunigungswerte werden zurückgegeben die `accelerometerSuccess` Callback-Funktion.
+Diese Beschleunigungswerte werden an die `accelerometerSuccess`-Callback-Funktion zurückgegeben.
 
     navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
     
@@ -87,9 +97,9 @@ Werte für X, Y, Z-Bewegung sind alle zufällig generierten in Ordnung, den Besc
 
 ## navigator.accelerometer.watchAcceleration
 
-Ruft das Gerät die aktuelle `Acceleration` in regelmäßigen Abständen, Ausführung der `accelerometerSuccess` Callback-Funktion jedes Mal. Gibt das Intervall in Millisekunden über die `acceleratorOptions` des Objekts `frequency` Parameter.
+Ruft das Gerät aktuelle `Accelerometer` in regelmäßigen Abständen, die `accelerometerSuccess`-Callback-Funktion jedes Mal ausgeführt. Gibt das Intervall in Millisekunden über das `AcceleratorOptions`-Objekt-`frequency`-Parameter.
 
-Das zurückgegebene ID Referenzen der Beschleunigungsmesser Uhr Intervall zu sehen und kann mit verwendet werden `navigator.accelerometer.clearWatch` , beobachten den Beschleunigungsmesser zu stoppen.
+Die zurückgegebenen Watch-ID verweist der Beschleunigungsmesser Uhr Intervall und kann mit `navigator.accelerometer.clearWatch` um zu stoppen, beobachten den Beschleunigungsmesser verwendet werden.
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
@@ -123,7 +133,7 @@ Die API ruft die Erfolg-Callback-Funktion im Intervall angefordert, aber schrän
 
 ## navigator.accelerometer.clearWatch
 
-Beenden, beobachten die `Acceleration` verwiesen wird, durch die `watchID` Parameter.
+Hör auf, beobachten die `Beschleunigung` durch den `watchID`-Parameter verwiesen.
 
     navigator.accelerometer.clearWatch(watchID);
     
@@ -141,7 +151,7 @@ Beenden, beobachten die `Acceleration` verwiesen wird, durch die `watchID` Param
 
 ## Beschleunigung
 
-Zu einem bestimmten Zeitpunkt erfasste `Beschleunigungsmesser`-Daten. Beschleunigungswerte sind die Auswirkungen der Schwerkraft (9.81 m/s ^ 2), so dass wenn ein Gerät flach und nach oben, *X*, *y liegt*, und *Z* -Werte zurückgegeben werden sollte `` , `` , und`9.81`.
+Zu einem bestimmten Zeitpunkt im Zeit erfasste `Accelerometer`-Daten enthält. Beschleunigungswerte sind die Auswirkungen der Schwerkraft (9.81 m/s ^ 2), so dass wenn ein Gerät flach und nach oben, *X*, *y liegt*, und *Z*-Werte zurückgegeben werden, ``, `` und `9.81 sollte`.
 
 ### Eigenschaften
 

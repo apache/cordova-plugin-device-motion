@@ -21,6 +21,16 @@
 
 이 플러그인 장치의 속도계에 대 한 액세스를 제공합니다. 가 속도계 3 차원 *x*, *y*및 *z* 축 따라 현재 장치 방향 기준으로 이동 (*델타*) 변경 내용을 감지 하는 모션 센서입니다.
 
+글로벌 `navigator.accelerometer` 개체를 통해 액세스가입니다.
+
+개체 `navigator` 글로벌 범위 첨부 아니에요 때까지 사용할 수 있는 `deviceready` 이벤트 후.
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log(navigator.accelerometer);
+    }
+    
+
 ## 설치
 
     cordova plugin add org.apache.cordova.device-motion
@@ -35,8 +45,8 @@
 *   Firefox 운영 체제
 *   iOS
 *   Tizen
-*   Windows Phone 7과 8
-*   윈도우 8
+*   Windows Phone 8
+*   윈도우
 
 ## 메서드
 
@@ -50,9 +60,9 @@
 
 ## navigator.accelerometer.getCurrentAcceleration
 
-*X*, *y*및 *z* 축 따라 현재 가속도 얻을.
+*X*, *y* 및 *z* 축 따라 현재 가속도 얻을.
 
-이 가속도 값에 반환 되는 `accelerometerSuccess` 콜백 함수.
+이 가속도 값이 `accelerometerSuccess` 콜백 함수에 반환 됩니다.
 
     navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
     
@@ -87,9 +97,9 @@ X, Y 값 Z 모션은가 속도계 시뮬레이션 모든에 임의로 생성 된
 
 ## navigator.accelerometer.watchAcceleration
 
-검색 장치의 현재 `Acceleration` 일반 간격에서 실행는 `accelerometerSuccess` 콜백 함수 때마다. 통해 밀리초 단위로 간격을 지정 된 `acceleratorOptions` 개체의 `frequency` 매개 변수.
+때마다 `accelerometerSuccess` 콜백 함수를 실행 정기적 소자의 현재 `Acceleration`을 검색 합니다. `acceleratorOptions` 개체의 `frequency` 매개 변수를 통해 밀리초 단위로 간격을 지정 합니다.
 
-반환 된 ID 참조가 속도계의 시계 간격, 시청과 함께 사용할 수 있습니다 `navigator.accelerometer.clearWatch` 가 속도계를 보고 중지 합니다.
+반환 된 시계 ID가 속도계의 시계 간격을 참조 하 고가 속도계를 보는 중지 하 `navigator.accelerometer.clearWatch`와 함께 사용할 수 있습니다.
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
@@ -123,7 +133,7 @@ API 요청 간격 성공 콜백 함수를 호출 하지만 40ms 사이 장치에
 
 ## navigator.accelerometer.clearWatch
 
-보고 중지는 `Acceleration` 에 의해 참조 되는 `watchID` 매개 변수.
+`watchID` 매개 변수에서 참조 `가속도` 보고 중지 합니다.
 
     navigator.accelerometer.clearWatch(watchID);
     
@@ -141,7 +151,7 @@ API 요청 간격 성공 콜백 함수를 호출 하지만 40ms 사이 장치에
 
 ## 가속
 
-포함 `Accelerometer` 특정 시점에 캡처된 데이터가. 가속도 값 포함 중력의 효과 (9.81 m/s ^2) 때 장치 거짓말 평평 하 고 *x*, *y*, 최대 직면 하 고 *z* 값 반환 되어야 합니다 있도록, `` , `` , 그리고`9.81`.
+특정 시점에 캡처된 `Accelerometer` 데이터를 포함 합니다. 가속도 값 포함 중력의 효과 (9.81 m/s ^2) 때 장치 거짓말 평평 하 고 *x*, *y*, 최대 직면 하 고 반환 하는 *z* 값 ``, `` 및 `9.81` 이어야 한다,.
 
 ### 속성
 

@@ -21,6 +21,16 @@
 
 這個外掛程式提供了對設備的加速度計的訪問。 加速度計是動作感應器檢測到的更改 (*三角洲*) 在相對於當前的設備方向，在三個維度沿*x*、 *y*和*z*軸運動。
 
+訪問是通過一個全球 `navigator.accelerometer` 物件。
+
+雖然該物件附加到全球範圍內 `導航器`，它不可用直到 `deviceready` 事件之後。
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log(navigator.accelerometer);
+    }
+    
+
 ## 安裝
 
     cordova plugin add org.apache.cordova.device-motion
@@ -35,8 +45,8 @@
 *   火狐瀏覽器的作業系統
 *   iOS
 *   泰
-*   Windows Phone 7 和 8
-*   Windows 8
+*   Windows Phone 8
+*   Windows
 
 ## 方法
 
@@ -50,7 +60,7 @@
 
 ## navigator.accelerometer.getCurrentAcceleration
 
-獲取當前加速沿*x*、 *y*和*z*軸。
+得到當前加速度沿 *x*、 *y* 和 *z* 軸。
 
 這些加速度值將返回到 `accelerometerSuccess` 回呼函數。
 
@@ -87,9 +97,9 @@
 
 ## navigator.accelerometer.watchAcceleration
 
-檢索設備的當前 `Acceleration` 的間隔時間定期，執行 `accelerometerSuccess` 回呼函數每次。 指定的時間間隔，以毫秒為單位通過 `acceleratorOptions` 物件的 `frequency` 參數。
+在週期性時間間隔，執行 `accelerometerSuccess` 回呼函數每次檢索設備的當前 `Accelerometer`。 指定的間隔，以毫秒為單位通過 `acceleratorOptions` 物件的 `frequency` 參數。
 
-返回觀看 ID 引用了加速度計的手錶時間間隔，並可以用 `navigator.accelerometer.clearWatch` 來停止觀看了加速度計。
+返回的表 ID 引用加速度計的手錶時間間隔，並且可以與 `navigator.accelerometer.clearWatch` 用來停止觀看了加速度計。
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
@@ -123,7 +133,7 @@ API 呼叫成功的回呼函數在時間間隔的要求，但將請求的範圍�
 
 ## navigator.accelerometer.clearWatch
 
-別看 `Acceleration` 引用的 `watchID` 參數。
+別看 `watchID` 參數所引用的 `Accelerometer`。
 
     navigator.accelerometer.clearWatch(watchID);
     
@@ -141,11 +151,11 @@ API 呼叫成功的回呼函數在時間間隔的要求，但將請求的範圍�
 
 ## 加速度
 
-包含 `Accelerometer` 在時間中的特定點捕獲的資料。 加速度值包括重力的作用 (9.81 m/s ^2），這樣當設備在於扁和朝上， *x*， *y*， *z*返回的值應該是 `` ， `` ，和`9.81`.
+包含在時間中捕獲的特定點的 `Accekerometer` 資料。 加速度值包括重力的作用 (9.81 m/s ^2），這樣當設備在於扁和朝上，*x*，*y*，*z* 返回的值應該是 ``、 `` 度和 `9.81`.
 
 ### 屬性
 
 *   **x**： 在 X 軸上的加速度量。（在 m/s ^2)*（人數）*
 *   **y**： 在 y 軸上的加速度量。（在 m/s ^2)*（人數）*
 *   **z**： 在 Z 軸上的加速度量。（在 m/s ^2)*（人數）*
-*   **時間戳記**： 創建時間戳記以毫秒為單位。*() DOMTimeStamp*
+*   **timestamp**： 創建時間戳記以毫秒為單位。*() DOMTimeStamp*

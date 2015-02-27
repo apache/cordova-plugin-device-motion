@@ -21,9 +21,17 @@
 
 Este plugin proporciona acceso a acelerómetro del dispositivo. El acelerómetro es un sensor de movimiento que detecta el cambio (*delta*) en movimiento con respecto a la orientación actual del dispositivo, en tres dimensiones sobre el eje *x*, *y*y *z* .
 
+El acceso es por un global `navigator.accelerometer` objeto.
+
+Aunque el objeto está unido al ámbito global `navigator` , no estará disponible hasta después de la `deviceready` evento.
+
+    document.addEventListener ("deviceready", onDeviceReady, false);
+    function onDeviceReady() {console.log(navigator.accelerometer)};
+    
+
 ## Instalación
 
-    cordova plugin add org.apache.cordova.device-motion
+    Cordova plugin añade org.apache.cordova.device-movimiento
     
 
 ## Plataformas soportadas
@@ -35,8 +43,8 @@ Este plugin proporciona acceso a acelerómetro del dispositivo. El acelerómetro
 *   Firefox OS
 *   iOS
 *   Tizen
-*   Windows Phone 7 y 8
-*   Windows 8
+*   Windows Phone 8
+*   Windows
 
 ## Métodos
 
@@ -50,27 +58,20 @@ Este plugin proporciona acceso a acelerómetro del dispositivo. El acelerómetro
 
 ## navigator.accelerometer.getCurrentAcceleration
 
-Tienes la aceleración actual a lo largo de los ejes *x*, *y* y *z*.
+Tienes la aceleración actual a lo largo de los ejes *x*, *y*y *z* .
 
-Estos valores de aceleración son devueltos a la función de devolución de llamada `accelerometerSuccess`.
+Estos valores de aceleración son devueltos a la `accelerometerSuccess` función de callback.
 
-    navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
+    navigator.accelerometer.getCurrentAcceleration (accelerometerSuccess, accelerometerError);
     
 
 ### Ejemplo
 
-    function onSuccess(acceleration) {
-        alert('Acceleration X: ' + acceleration.x + '\n' +
-              'Acceleration Y: ' + acceleration.y + '\n' +
-              'Acceleration Z: ' + acceleration.z + '\n' +
-              'Timestamp: '      + acceleration.timestamp + '\n');
-    };
+    function onSuccess(acceleration) {alert ('Aceleración X:' + acceleration.x + '\n' + 'Aceleración Y:' + acceleration.y + '\n' + 'Aceleración Z:' + acceleration.z + '\n' + ' Timestamp: ' + acceleration.timestamp + '\n');};
     
-    function onError() {
-        alert('onError!');
-    };
+    función onError() {alert('onError!');};
     
-    navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+    navigator.accelerometer.getCurrentAcceleration (onSuccess, onError);
     
 
 ### Navegador rarezas
@@ -91,9 +92,7 @@ Recupera el dispositivo actual de `Acceleration` a intervalos regulares, ejecuta
 
 El vuelto ver referencias ID intervalo del acelerómetro reloj y puede ser utilizado con `navigator.accelerometer.clearWatch` para dejar de ver el acelerómetro.
 
-    var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
-                                                           accelerometerError,
-                                                           accelerometerOptions);
+    var watchID = navigator.accelerometer.watchAcceleration (accelerometerSuccess, accelerometerError, accelerometerOptions);
     
 
 *   **accelerometerOptions**: Un objeto con las llaves opcionales siguientes: 
@@ -101,29 +100,20 @@ El vuelto ver referencias ID intervalo del acelerómetro reloj y puede ser utili
 
 ### Ejemplo
 
-    function onSuccess(acceleration) {
-        alert('Acceleration X: ' + acceleration.x + '\n' +
-              'Acceleration Y: ' + acceleration.y + '\n' +
-              'Acceleration Z: ' + acceleration.z + '\n' +
-              'Timestamp: '      + acceleration.timestamp + '\n');
-    };
+    function onSuccess(acceleration) {alert ('Aceleración X:' + acceleration.x + '\n' + 'Aceleración Y:' + acceleration.y + '\n' + 'Aceleración Z:' + acceleration.z + '\n' + ' Timestamp: ' + acceleration.timestamp + '\n');};
     
-    function onError() {
-        alert('onError!');
-    };
+    función onError() {alert('onError!');};
     
-    var options = { frequency: 3000 };  // Update every 3 seconds
-    
-    var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+    var opciones = { frequency: 3000 };  Actualizar cada 3 segundos var watchID = navigator.accelerometer.watchAcceleration (onSuccess, onError, opciones);
     
 
 ### iOS rarezas
 
-La API llama a la función de devolución de llamada de éxito en el intervalo solicitado, pero restringe la gama de solicitudes para el dispositivo entre 40ms y 1000ms. Por ejemplo, si usted solicita un intervalo de 3 segundos, (3000ms), la API pide datos desde el dispositivo cada 1 segundo, pero sólo ejecuta el callback de éxito cada 3 segundos.
+La API llama a la función de devolución de llamada de éxito en el intervalo solicitado, pero restringe la gama de solicitudes que el dispositivo entre 40ms y 1000ms. Por ejemplo, si usted solicita un intervalo de 3 segundos, (3000ms), la API solicita datos desde el dispositivo cada 1 segundo, pero sólo ejecuta el callback de éxito cada 3 segundos.
 
 ## navigator.accelerometer.clearWatch
 
-Deja de mirar la `aceleración` al que hace referencia el parámetro `watchID`.
+Dejar de mirar el `Acceleration` referenciado por el `watchID` parámetro.
 
     navigator.accelerometer.clearWatch(watchID);
     
@@ -132,16 +122,14 @@ Deja de mirar la `aceleración` al que hace referencia el parámetro `watchID`.
 
 ### Ejemplo
 
-    var watchID = navigator.accelerometer.watchAcceleration (onSuccess, onError, opciones);  
+    var watchID = navigator.accelerometer.watchAcceleration (onSuccess, onError, opciones);
     
-    / /... adelante... 
-    
-    navigator.accelerometer.clearWatch(watchID);
+    ... adelante... navigator.accelerometer.clearWatch(watchID);
     
 
 ## Acceleration
 
-Contiene data del `Accelerometer` capturada en un punto específico en el tiempo. Valores de aceleración incluyen el efecto de la gravedad (9,81 m/s ^ 2), de modo que cuando se encuentra un dispositivo plano y hacia arriba, *x*, *y*, y *z* valores devueltos deben ser `` , `` , y`9.81`.
+Contiene `Accelerometer` datos capturados en un punto específico en el tiempo. Valores de aceleración incluyen el efecto de la gravedad (9,81 m/s ^ 2), de modo que cuando se encuentra un dispositivo plano y hacia arriba, *x*, *y*, y *z* valores devueltos deben ser `` , `` , y`9.81`.
 
 ### Propiedades
 

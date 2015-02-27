@@ -21,9 +21,17 @@
 
 Ce plugin permet d'accéder à l'accéléromètre de l'appareil. L'accéléromètre est un capteur de mouvement qui détecte la modification (*delta*) en mouvement par rapport à l'orientation actuelle de l'appareil, en trois dimensions le long de l'axe *x*, *y*et *z* .
 
+Accès se fait par un global `navigator.accelerometer` objet.
+
+Bien que l'objet est attaché à la portée globale `navigator` , il n'est pas disponible jusqu'après la `deviceready` événement.
+
+    document.addEventListener (« deviceready », onDeviceReady, false) ;
+    function onDeviceReady() {console.log(navigator.accelerometer);}
+    
+
 ## Installation
 
-    cordova plugin add org.apache.cordova.device-motion
+    Cordova plugin ajouter org.apache.cordova.device-motion
     
 
 ## Plates-formes prises en charge
@@ -35,8 +43,8 @@ Ce plugin permet d'accéder à l'accéléromètre de l'appareil. L'accéléromè
 *   Firefox OS
 *   iOS
 *   Paciarelli
-*   Windows Phone 7 et 8
-*   Windows 8
+*   Windows Phone 8
+*   Windows
 
 ## Méthodes
 
@@ -50,27 +58,20 @@ Ce plugin permet d'accéder à l'accéléromètre de l'appareil. L'accéléromè
 
 ## navigator.accelerometer.getCurrentAcceleration
 
-Renvoie l'accélération en cours sur les axes *x*, *y*et *z* .
+Obtenir l'accélération courante le long des axes *x*, *y*et *z* .
 
-Ces valeurs d'accélération sont retournées à la fonction callback `accelerometerSuccess`.
+Ces valeurs d'accélération sont retournés à la `accelerometerSuccess` fonction de rappel.
 
-    navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
+    navigator.accelerometer.getCurrentAcceleration (accelerometerSuccess, accelerometerError) ;
     
 
 ### Exemple
 
-    function onSuccess(acceleration) {
-        alert('Acceleration X: ' + acceleration.x + '\n' +
-              'Acceleration Y: ' + acceleration.y + '\n' +
-              'Acceleration Z: ' + acceleration.z + '\n' +
-              'Timestamp: '      + acceleration.timestamp + '\n');
-    };
+    function onSuccess(acceleration) {alert ("Accélération X:" + acceleration.x + « \n » + "Accélération Y:" + acceleration.y + « \n » + « Accélération Z: » + acceleration.z + « \n » + ' Timestamp: "+ acceleration.timestamp + « \n »);} ;
     
-    function onError() {
-        alert('onError!');
-    };
+    fonction onError() {alert('onError!');} ;
     
-    navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+    navigator.accelerometer.getCurrentAcceleration (onSuccess, onError) ;
     
 
 ### Bizarreries navigateur
@@ -91,9 +92,7 @@ Récupère le dispositif actuel de `Acceleration` à intervalle régulier, l'ex�
 
 Le retourné regarder ID références intervalle de surveillance de l'accéléromètre et peut être utilisé avec `navigator.accelerometer.clearWatch` d'arrêter de regarder l'accéléromètre.
 
-    var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
-                                                           accelerometerError,
-                                                           accelerometerOptions);
+    var watchID = navigator.accelerometer.watchAcceleration (accelerometerSuccess, accelerometerError, accelerometerOptions) ;
     
 
 *   **accelerometerOptions**: Un objet avec les clés facultatives suivantes : 
@@ -101,20 +100,11 @@ Le retourné regarder ID références intervalle de surveillance de l'accéléro
 
 ### Exemple
 
-    function onSuccess(acceleration) {
-        alert('Acceleration X: ' + acceleration.x + '\n' +
-              'Acceleration Y: ' + acceleration.y + '\n' +
-              'Acceleration Z: ' + acceleration.z + '\n' +
-              'Timestamp: '      + acceleration.timestamp + '\n');
-    };
+    function onSuccess(acceleration) {alert ("Accélération X:" + acceleration.x + « \n » + "Accélération Y:" + acceleration.y + « \n » + « Accélération Z: » + acceleration.z + « \n » + ' Timestamp: "+ acceleration.timestamp + « \n »);} ;
     
-    function onError() {
-        alert('onError!');
-    };
+    fonction onError() {alert('onError!');} ;
     
-    var options = { frequency: 3000 };  // Update every 3 seconds
-    
-    var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+    options de var = { frequency: 3000 } ;  Mise à jour chaque 3 secondes var watchID = navigator.accelerometer.watchAcceleration (onSuccess, onError, options) ;
     
 
 ### iOS Quirks
@@ -125,18 +115,16 @@ L'API appelle la fonction de rappel de succès à l'intervalle demandé, mais re
 
 Arrêter de regarder le `Acceleration` référencé par le `watchID` paramètre.
 
-    navigator.accelerometer.clearWatch(watchID);
+    navigator.accelerometer.clearWatch(watchID) ;
     
 
 *   **watchID**: l'ID retourné par`navigator.accelerometer.watchAcceleration`.
 
 ### Exemple
 
-    var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+    var watchID = navigator.accelerometer.watchAcceleration (onSuccess, onError, options) ;
     
-    // ... later on ...
-    
-    navigator.accelerometer.clearWatch(watchID);
+    ... plus tard... navigator.accelerometer.clearWatch(watchID) ;
     
 
 ## Accélération

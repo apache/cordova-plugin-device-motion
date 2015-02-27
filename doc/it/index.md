@@ -21,6 +21,16 @@
 
 Questo plugin consente di accedere all'accelerometro del dispositivo. L'accelerometro è un sensore di movimento che rileva il cambiamento (*delta*) nel movimento relativo l'orientamento corrente del dispositivo, in tre dimensioni lungo l'asse *x*, *y*e *z* .
 
+L'accesso avviene tramite un oggetto globale `navigator.accelerometer`.
+
+Anche se l'oggetto è associato con ambito globale del `navigator`, non è disponibile fino a dopo l'evento `deviceready`.
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log(navigator.accelerometer);
+    }
+    
+
 ## Installazione
 
     cordova plugin add org.apache.cordova.device-motion
@@ -35,8 +45,8 @@ Questo plugin consente di accedere all'accelerometro del dispositivo. L'accelero
 *   Firefox OS
 *   iOS
 *   Tizen
-*   Windows Phone 7 e 8
-*   Windows 8
+*   Windows Phone 8
+*   Windows
 
 ## Metodi
 
@@ -50,9 +60,9 @@ Questo plugin consente di accedere all'accelerometro del dispositivo. L'accelero
 
 ## navigator.accelerometer.getCurrentAcceleration
 
-Ottenere l'attuale accelerazione lungo gli assi *x*, *y*e *z* .
+Ottenere l'attuale accelerazione lungo gli assi *x*, *y* e *z*.
 
-I valori di accelerazione vengono restituiti per la `accelerometerSuccess` funzione di callback.
+I valori di accelerazione vengono restituiti alla funzione di callback `accelerometerSuccess`.
 
     navigator.accelerometer.getCurrentAcceleration(accelerometerSuccess, accelerometerError);
     
@@ -73,7 +83,7 @@ I valori di accelerazione vengono restituiti per la `accelerometerSuccess` funzi
     navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
     
 
-### Stranezze browser
+### Stranezze Browser
 
 I valori per X, Y, movimento Z sono tutti generati casualmente in ordine per simulare l'accelerometro.
 
@@ -87,9 +97,9 @@ I valori per X, Y, movimento Z sono tutti generati casualmente in ordine per sim
 
 ## navigator.accelerometer.watchAcceleration
 
-Recupera il dispositivo di corrente `Acceleration` a intervalli regolari, eseguendo la `accelerometerSuccess` funzione di callback ogni volta. Specificare l'intervallo in millisecondi via la `acceleratorOptions` dell'oggetto `frequency` parametro.
+Recupera corrente del dispositivo `Acceleration` a intervalli regolari, l'esecuzione della funzione di callback `accelerometerSuccess` ogni volta. Specificare l'intervallo in millisecondi tramite parametro `frequency` dell'oggetto `acceleratorOptions`.
 
-L'oggetto restituito guardare ID riferimenti intervallo orologio di accelerometro e può essere utilizzato con `navigator.accelerometer.clearWatch` a smettere di guardare l'accelerometro.
+L'orologio restituito ID fa riferimento intervallo orologio di accelerometro e può essere utilizzato con `navigator.accelerometer.clearWatch` a smettere di guardare l'accelerometro.
 
     var watchID = navigator.accelerometer.watchAcceleration(accelerometerSuccess,
                                                            accelerometerError,
@@ -123,7 +133,7 @@ L'API chiama la funzione di callback di successo nell'intervallo richiesto, ma l
 
 ## navigator.accelerometer.clearWatch
 
-Smettere di guardare il `Acceleration` fanno riferimento il `watchID` parametro.
+Smettere di guardare l' `Acceleration` a cui fa riferimento il parametro `watchID`.
 
     navigator.accelerometer.clearWatch(watchID);
     
@@ -141,7 +151,7 @@ Smettere di guardare il `Acceleration` fanno riferimento il `watchID` parametro.
 
 ## Accelerazione
 
-Contiene `Accelerometer` dati acquisiti in un punto specifico nel tempo. I valori di accelerazione includono l'effetto della gravità (9,81 m/s ^ 2), in modo che quando un dispositivo si trova piatta e rivolto in su, *x*, *y*, e *z* valori restituiti devono essere `` , `` , e`9.81`.
+Contiene i dati dell'`Accelerometer` catturati in un punto specifico nel tempo. I valori di accelerazione includono l'effetto della gravità (9,81 m/s ^ 2), in modo che quando un dispositivo si trova piatta e rivolto in su, *x*, *y*, e *z* valori restituiti dovrebbero essere ``, `` e `9,81`.
 
 ### Proprietà
 
