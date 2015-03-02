@@ -19,4 +19,6 @@
 
 # org.apache.cordova.device-motion
 
+[![Build Status](https://travis-ci.org/apache/cordova-plugin-device-motion.svg)](https://travis-ci.org/apache/cordova-plugin-device-motion)
+
 Plugin documentation: [doc/index.md](doc/index.md)
