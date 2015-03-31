@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.device-motion
+# cordova-plugin-device-motion
 
 이 플러그인 장치의 속도계에 대 한 액세스를 제공합니다. 가 속도계 3 차원 *x*, *y*및 *z* 축 따라 현재 장치 방향 기준으로 이동 (*델타*) 변경 내용을 감지 하는 모션 센서입니다.
 
@@ -33,7 +33,7 @@
 
 ## 설치
 
-    cordova plugin add org.apache.cordova.device-motion
+    cordova plugin add cordova-plugin-device-motion
     
 
 ## 지원 되는 플랫폼

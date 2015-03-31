@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.device-motion
+# cordova-plugin-device-motion
 
 このプラグインは、デバイスの加速度計へのアクセスを提供します。 加速度計の現在のデバイスの向き、 *x* *y*、および*z*軸に沿って 3 つの次元の相対運動の変更 (*デルタ*) を検出するモーション センサーです。
 
@@ -33,7 +33,7 @@
 
 ## インストール
 
-    cordova plugin add org.apache.cordova.device-motion
+    cordova plugin add cordova-plugin-device-motion
     
 
 ## サポートされているプラットフォーム

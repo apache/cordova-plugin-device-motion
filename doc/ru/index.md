@@ -17,13 +17,13 @@
     under the License.
 -->
 
-# org.apache.cordova.device-motion
+# cordova-plugin-device-motion
 
 Этот плагин обеспечивает доступ к акселерометру устройства. Акселерометр является датчиком движения, который обнаруживает изменение (*дельта*) в движении относительно текущей ориентации устройства, в трех измерениях вдоль осей *x*, *y* и *z* .
 
 ## Установка
 
-    cordova plugin add org.apache.cordova.device-motion
+    cordova plugin add cordova-plugin-device-motion
     
 
 ## Поддерживаемые платформы

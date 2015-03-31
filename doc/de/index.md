@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.device-motion
+# cordova-plugin-device-motion
 
 Dieses Plugin ermöglicht den Zugriff auf das Gerät Beschleunigungsmesser. Der Beschleunigungsmesser ist ein Bewegungssensor, der die Änderung (*Delta*) erkennt Bewegung im Verhältnis zu der aktuellen Geräte-Orientierung, in drei Dimensionen entlang der *x-*, *y-*und *Z* -Achse.
 
@@ -33,7 +33,7 @@ Obwohl das Objekt mit der globalen Gültigkeitsbereich `navigator` verbunden ist
 
 ## Installation
 
-    cordova plugin add org.apache.cordova.device-motion
+    cordova plugin add cordova-plugin-device-motion
     
 
 ## Unterstützte Plattformen

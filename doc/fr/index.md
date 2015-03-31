@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# org.apache.cordova.device-motion
+# cordova-plugin-device-motion
 
 Ce plugin permet d'accéder à l'accéléromètre de l'appareil. L'accéléromètre est un capteur de mouvement qui détecte la modification (*delta*) en mouvement par rapport à l'orientation actuelle de l'appareil, en trois dimensions le long de l'axe *x*, *y*et *z* .
 
@@ -31,7 +31,7 @@ Bien que l'objet est attaché à la portée globale `navigator` , il n'est pas d
 
 ## Installation
 
-    Cordova plugin ajouter org.apache.cordova.device-motion
+    Cordova plugin ajouter cordova-plugin-device-motion
     
 
 ## Plates-formes prises en charge
