@@ -21,7 +21,7 @@
 
 (function(win) {
     var cordova = require('cordova'),
-        Acceleration = require('org.apache.cordova.device-motion.Acceleration'),
+        Acceleration = require('cordova-plugin-device-motion.Acceleration'),
         accelerometerCallback = null;
 
     module.exports = {
