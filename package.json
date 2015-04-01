@@ -3,7 +3,7 @@
   "version": "0.2.12-dev",
   "description": "Cordova Device Motion Plugin",
   "cordova": {
-    "id": "cordova-plugin-device-motion",
+    "id": "org.apache.cordova.device-motion",
     "platforms": [
       "firefoxos",
       "android",

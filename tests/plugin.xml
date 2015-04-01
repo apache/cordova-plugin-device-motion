@@ -19,7 +19,7 @@
 -->
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="cordova-plugin-device-motion-tests"
+    id="org.apache.cordova.device-motion.tests"
     version="0.2.12-dev">
     <name>Cordova Device Motion Plugin Tests</name>
     <license>Apache 2.0</license>
