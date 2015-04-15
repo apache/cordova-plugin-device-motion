@@ -99,3 +99,19 @@
 * CB-7977 Mention `deviceready` in plugin docs
 * CB-7700 cordova-plugin-device-motion documentation translation: cordova-plugin-device-motion
 * CB-7571 Bump version of nested plugin to match parent plugin
+
+### 1.0.0 (Apr 15, 2015)
+* CB-8746 gave plugin major version bump
+* CB-8683 updated windows and tizen specific references of old id to new id
+* CB-8683 changed plugin-id to pacakge-name
+* CB-8653 properly updated translated docs to use new id
+* CB-8653 updated translated docs to use new id
+* Use TRAVIS_BUILD_DIR, install paramedic by npm
+* CB-8312 Multiply accelerometer values by -g on Windows
+* CB-8653 Updated Readme
+* CB-8562 Integrate TravisCI
+* CB-8438 cordova-plugin-device-motion documentation translation: cordova-plugin-device-motion
+* CB-8538 Added package.json file
+* CB-8096 Pended recently added spec.12 if accelerometer doesn't exist on the device
+* CB-8096 Pended auto tests if accelerometer doesn't exist on the device
+* CB-8083 Adds test to make sure success callback is called each time
