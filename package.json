@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-device-motion",
-  "version": "1.0.0",
+  "version": "1.0.1-dev",
   "description": "Cordova Device Motion Plugin",
   "cordova": {
     "id": "cordova-plugin-device-motion",
