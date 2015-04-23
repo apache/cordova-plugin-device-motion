@@ -42,13 +42,13 @@ var accel = null;
 
 // Tells native to start.
 function start() {
-    exec(function(a) {
+    exec(function (a) {
         var tempListeners = listeners.slice(0);
         accel = new Acceleration(a.x, a.y, a.z, a.timestamp);
         for (var i = 0, l = tempListeners.length; i < l; i++) {
             tempListeners[i].win(accel);
         }
-    }, function(e) {
+    }, function (e) {
         var tempListeners = listeners.slice(0);
         for (var i = 0, l = tempListeners.length; i < l; i++) {
             tempListeners[i].fail(e);
@@ -60,12 +60,13 @@ function start() {
 // Tells native to stop.
 function stop() {
     exec(null, null, "Accelerometer", "stop", []);
+    accel = null;
     running = false;
 }
 
 // Adds a callback pair to the listeners array
 function createCallbackPair(win, fail) {
-    return {win:win, fail:fail};
+    return { win: win, fail: fail };
 }
 
 // Removes a win/fail listener pair from the listeners array
@@ -87,15 +88,26 @@ var accelerometer = {
      * @param {Function} errorCallback      The function to call when there is an error getting the acceleration data. (OPTIONAL)
      * @param {AccelerationOptions} options The options for getting the accelerometer data such as timeout. (OPTIONAL)
      */
-    getCurrentAcceleration: function(successCallback, errorCallback, options) {
+    getCurrentAcceleration: function (successCallback, errorCallback, options) {
         argscheck.checkArgs('fFO', 'accelerometer.getCurrentAcceleration', arguments);
 
+        if (cordova.platformId === "windowsphone") {
+            exec(function (a) {
+                accel = new Acceleration(a.x, a.y, a.z, a.timestamp);
+                successCallback(accel);
+            }, function (e) {
+                errorCallback(e);
+            }, "Accelerometer", "getCurrentAcceleration", []);
+
+            return;
+        }
+
         var p;
-        var win = function(a) {
+        var win = function (a) {
             removeListeners(p);
             successCallback(a);
         };
-        var fail = function(e) {
+        var fail = function (e) {
             removeListeners(p);
             errorCallback && errorCallback(e);
         };
@@ -116,7 +128,7 @@ var accelerometer = {
      * @param {AccelerationOptions} options The options for getting the accelerometer data such as timeout. (OPTIONAL)
      * @return String                       The watch id that must be passed to #clearWatch to stop watching.
      */
-    watchAcceleration: function(successCallback, errorCallback, options) {
+    watchAcceleration: function (successCallback, errorCallback, options) {
         argscheck.checkArgs('fFO', 'accelerometer.watchAcceleration', arguments);
         // Default interval (10 sec)
         var frequency = (options && options.frequency && typeof options.frequency == 'number') ? options.frequency : 10000;
@@ -124,19 +136,19 @@ var accelerometer = {
         // Keep reference to watch id, and report accel readings as often as defined in frequency
         var id = utils.createUUID();
 
-        var p = createCallbackPair(function(){}, function(e) {
+        var p = createCallbackPair(function () { }, function (e) {
             removeListeners(p);
             errorCallback && errorCallback(e);
         });
         listeners.push(p);
 
         timers[id] = {
-            timer:window.setInterval(function() {
+            timer: window.setInterval(function () {
                 if (accel) {
                     successCallback(accel);
                 }
             }, frequency),
-            listeners:p
+            listeners: p
         };
 
         if (running) {
@@ -157,7 +169,7 @@ var accelerometer = {
      *
      * @param {String} id       The id of the watch returned from #watchAcceleration.
      */
-    clearWatch: function(id) {
+    clearWatch: function (id) {
         // Stop javascript timer & remove from timer list
         if (id && timers[id]) {
             window.clearInterval(timers[id].timer);
