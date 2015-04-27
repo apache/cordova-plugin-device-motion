@@ -32,6 +32,14 @@ exports.defineAutoTests = function () {
       done();
     };
 
+    // This timeout is here to lessen the load on native accelerometer
+    // intensive use of which can lead to occasional test failures
+    afterEach(function(done) {
+      setTimeout(function() {
+        done();
+      }, 100);
+    });
+
     it("accelerometer.spec.1 should exist", function () {
       expect(navigator.accelerometer).toBeDefined();
     });
