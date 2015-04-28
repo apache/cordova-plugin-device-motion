@@ -263,7 +263,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         var fail = function (e) {
             console.log("watchAccel fail callback with error code " + e);
             stopAccel();
-            setAccelStatus(Accelerometer.ERROR_MSG[e]);
+            setAccelStatus(e);
         };
 
         // Update acceleration every 1 sec
@@ -306,7 +306,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         // Fail callback
         var fail = function (e) {
             console.log("getAccel fail callback with error code " + e);
-            setAccelStatus(Accelerometer.ERROR_MSG[e]);
+            setAccelStatus(e);
         };
 
         // Make call
