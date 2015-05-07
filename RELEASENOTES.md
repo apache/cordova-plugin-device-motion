@@ -115,3 +115,8 @@
 * CB-8096 Pended recently added spec.12 if accelerometer doesn't exist on the device
 * CB-8096 Pended auto tests if accelerometer doesn't exist on the device
 * CB-8083 Adds test to make sure success callback is called each time
+
+### 1.1.0 (May 06, 2015)
+* CB-8926: The tests module tries to access an undefined global `Accelerometer` on fail callbacks.  This results in another JS error, `ReferenceError: 'Accelerometer' is undefined.`  This change passes through the error message instead of attempting to index into it.
+* CB-8876 Introduced a small timeout between tests
+* CB-8876 Rewrote **wp8** impementation to be more stable
