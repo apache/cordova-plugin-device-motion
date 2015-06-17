@@ -120,3 +120,8 @@
 * CB-8926: The tests module tries to access an undefined global `Accelerometer` on fail callbacks.  This results in another JS error, `ReferenceError: 'Accelerometer' is undefined.`  This change passes through the error message instead of attempting to index into it.
 * CB-8876 Introduced a small timeout between tests
 * CB-8876 Rewrote **wp8** impementation to be more stable
+
+### 1.1.1 (Jun 17, 2015)
+* CB-9128 cordova-plugin-device-motion documentation translation: cordova-plugin-device-motion
+* fix npm md issue
+* CB-8842 Return cached values on Android if there is no updates from sensor
