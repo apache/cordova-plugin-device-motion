@@ -52,7 +52,7 @@ public class AccelListener extends CordovaPlugin implements SensorEventListener 
     private float x,y,z;                                // most recent acceleration values
     private long timestamp;                         // time of most recent value
     private int status;                                 // status of listener
-    private int accuracy = SensorManager.SENSOR_STATUS_UNRELIABLE;
+    private int accuracy = SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM;
 
     private SensorManager sensorManager;    // Sensor manager
     private Sensor mSensor;                           // Acceleration sensor returned by sensor manager
