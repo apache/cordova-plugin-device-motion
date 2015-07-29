@@ -161,9 +161,5 @@
         <js-module src="src/browser/AccelerometerProxy.js" name="AccelerometerProxy">
             <runs/>
         </js-module>
-
-        <js-module src="src/browser/accelerometer.js" name="accelerometer">
-            <merges target="navigator.accelerometer" />
-        </js-module>
     </platform>
 </plugin>
