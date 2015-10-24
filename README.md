@@ -90,6 +90,11 @@ callback function.
 
 Values for X, Y, Z motion are all randomly generated in order to simulate the accelerometer.
 
+### Android Quirks
+
+The accelerometer is called with the __SENSOR_DELAY_UI__ flag, which limits the maximum readout frequency to something between 20 and 60 Hz, depending on the device. Values for __period__ corresponding to higher frequencies will result in duplicate samples.
+
+
 ### iOS Quirks
 
 - iOS doesn't recognize the concept of getting the current acceleration at any given point.
