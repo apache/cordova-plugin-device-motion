@@ -78,11 +78,11 @@ callback function.
               'Acceleration Y: ' + acceleration.y + '\n' +
               'Acceleration Z: ' + acceleration.z + '\n' +
               'Timestamp: '      + acceleration.timestamp + '\n');
-    };
+    }
 
     function onError() {
         alert('onError!');
-    };
+    }
 
     navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
 
@@ -128,11 +128,11 @@ accelerometer.
               'Acceleration Y: ' + acceleration.y + '\n' +
               'Acceleration Z: ' + acceleration.z + '\n' +
               'Timestamp: '      + acceleration.timestamp + '\n');
-    };
+    }
 
     function onError() {
         alert('onError!');
-    };
+    }
 
     var options = { frequency: 3000 };  // Update every 3 seconds
 
