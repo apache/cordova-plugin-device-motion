@@ -93,12 +93,7 @@ namespace WPCordovaClassLib.Cordova.Commands
             {
                 this.SetStatus(ErrorFailedToStart);
                 DispatchCommandResult(new PluginResult(PluginResult.Status.IO_EXCEPTION, ErrorFailedToStart), watchCallbackId);
-                return;
             }
-            PluginResult result = new PluginResult(PluginResult.Status.OK);
-            result.KeepCallback = true;
-            DispatchCommandResult(result,watchCallbackId);
-
         }
 
         public void stop(string options)
