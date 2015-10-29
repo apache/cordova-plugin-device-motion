@@ -20,11 +20,18 @@
 */
 
 exports.defineAutoTests = function () {
-    var isWindows = (cordova.platformId === "windows") || (cordova.platformId === "windows8"),
-     // Checking existence of accelerometer for windows platform 
-     // Assumed that accelerometer always exists on other platforms. Extend 
-     // condition to support accelerometer check on other platforms
-     isAccelExist = isWindows ? Windows.Devices.Sensors.Accelerometer.getDefault() !== null : true;
+  var isWindows = (cordova.platformId === "windows") || (cordova.platformId === "windows8"),
+      isIOS = cordova.platformId === "ios",
+      isAccelExist = getAccelExist();
+
+  function getAccelExist() {
+    if (isWindows) {
+      return Windows.Devices.Sensors.Accelerometer.getDefault() !== null;  
+    } else if (isIOS) {
+      return !device.isVirtual;
+    }
+    return true;
+  }
 
   describe('Accelerometer (navigator.accelerometer)', function () {
     var fail = function(done) {
