@@ -43,10 +43,10 @@
 {
     self = [super init];
     if (self) {
-        x = 0;
-        y = 0;
-        z = 0;
-        timestamp = 0;
+        self.x = 0;
+        self.y = 0;
+        self.z = 0;
+        self.timestamp = 0;
         self.callbackId = nil;
         self.isRunning = NO;
         self.haveReturnedResult = YES;
@@ -118,10 +118,10 @@
     // Create an acceleration object
     NSMutableDictionary* accelProps = [NSMutableDictionary dictionaryWithCapacity:4];
 
-    [accelProps setValue:[NSNumber numberWithDouble:x * kGravitationalConstant] forKey:@"x"];
-    [accelProps setValue:[NSNumber numberWithDouble:y * kGravitationalConstant] forKey:@"y"];
-    [accelProps setValue:[NSNumber numberWithDouble:z * kGravitationalConstant] forKey:@"z"];
-    [accelProps setValue:[NSNumber numberWithDouble:timestamp] forKey:@"timestamp"];
+    [accelProps setValue:[NSNumber numberWithDouble:self.x * kGravitationalConstant] forKey:@"x"];
+    [accelProps setValue:[NSNumber numberWithDouble:self.y * kGravitationalConstant] forKey:@"y"];
+    [accelProps setValue:[NSNumber numberWithDouble:self.z * kGravitationalConstant] forKey:@"z"];
+    [accelProps setValue:[NSNumber numberWithDouble:self.timestamp] forKey:@"timestamp"];
 
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:accelProps];
     [result setKeepCallback:[NSNumber numberWithBool:YES]];
