@@ -24,11 +24,15 @@
 @property (readwrite, assign) BOOL isRunning;
 @property (readwrite, assign) BOOL haveReturnedResult;
 @property (readwrite, strong) CMMotionManager* motionManager;
+@property (readwrite, assign) double x;
+@property (readwrite, assign) double y;
+@property (readwrite, assign) double z;
+@property (readwrite, assign) NSTimeInterval timestamp;
 @end
 
 @implementation CDVAccelerometer
 
-@synthesize callbackId, isRunning;
+@synthesize callbackId, isRunning,x,y,z,timestamp;
 
 // defaults to 10 msec
 #define kAccelerometerInterval 10
@@ -71,16 +75,23 @@
         [self.motionManager setAccelerometerUpdateInterval:kAccelerometerInterval/1000];  // expected in seconds
         __weak CDVAccelerometer* weakSelf = self;
         [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
-            x = accelerometerData.acceleration.x;
-            y = accelerometerData.acceleration.y;
-            z = accelerometerData.acceleration.z;
-            timestamp = ([[NSDate date] timeIntervalSince1970] * 1000);
+            weakSelf.x = accelerometerData.acceleration.x;
+            weakSelf.y = accelerometerData.acceleration.y;
+            weakSelf.z = accelerometerData.acceleration.z;
+            weakSelf.timestamp = ([[NSDate date] timeIntervalSince1970] * 1000);
             [weakSelf returnAccelInfo];
         }];
 
         if (!self.isRunning) {
             self.isRunning = YES;
         }
+    }
+    else {
+
+        NSLog(@"Running in Simulator? All gyro tests will fail.");
+        CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_INVALID_ACTION messageAsString:@"Error. Accelerometer Not Available."];
+        
+        [self.commandDelegate sendPluginResult:result callbackId:self.callbackId];
     }
     
 }
