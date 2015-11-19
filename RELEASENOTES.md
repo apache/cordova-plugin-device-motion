@@ -20,6 +20,17 @@
 -->
 # Release Notes
 
+### 1.2.0 (Nov 18, 2015)
+* CB-10035 Updated `RELEASENOTES` to be newest to oldest
+* access all `accel` properties via getters
+* Return error when `accelerometer` not available, skip/pending tests when accel not available, use getters for properties
+* Returning an `OK PluginResult.Status` when starting
+* Update `README.md`
+* Added **Android** quirk 
+* Fixing contribute link.
+* CB-9426 Fix exception when using device motion plugin on **browser** platform.
+* CB-9339 Increase the default sensor accuracy
+
 ### 1.1.1 (Jun 17, 2015)
 * CB-9128 cordova-plugin-device-motion documentation translation: cordova-plugin-device-motion
 * fix npm md issue
