@@ -21,8 +21,7 @@
 
 /*global Windows:true */
 
-var cordova = require('cordova'),
-    Acceleration = require('cordova-plugin-device-motion.Acceleration');
+var Acceleration = require('cordova-plugin-device-motion.Acceleration');
 
 /* This is the actual implementation part that returns the result on Windows 8
 */
@@ -34,10 +33,11 @@ module.exports = {
 
         var accel = Windows.Devices.Sensors.Accelerometer.getDefault();
         if(!accel) {
-            lose && lose("No accelerometer found");
+            if (lose) {
+                lose("No accelerometer found");
+            }
         }
         else {
-            var self = this;
             accel.reportInterval = Math.max(16,accel.minimumReportInterval);
 
             // store our bound function
@@ -57,7 +57,9 @@ module.exports = {
         win = win || function(){};
         var accel = Windows.Devices.Sensors.Accelerometer.getDefault();
         if(!accel) {
-            lose && lose("No accelerometer found");
+            if (lose) {
+                lose("No accelerometer found");
+            }
         }
         else {
             accel.removeEventListener("readingchanged",this.onDataChanged);

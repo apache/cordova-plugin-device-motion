@@ -112,7 +112,9 @@ var accelerometer = {
         };
         var fail = function (e) {
             removeListeners(p);
-            errorCallback && errorCallback(e);
+            if (errorCallback) {
+                errorCallback(e);
+            }
         };
 
         p = createCallbackPair(win, fail);
@@ -141,7 +143,9 @@ var accelerometer = {
 
         var p = createCallbackPair(function () { }, function (e) {
             removeListeners(p);
-            errorCallback && errorCallback(e);
+            if (errorCallback) {
+                errorCallback(e);
+            }
         });
         listeners.push(p);
 

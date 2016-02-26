@@ -17,6 +17,8 @@
 #         under the License.
 -->
 
+[![Build Status](https://travis-ci.org/apache/cordova-plugin-device-motion.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-device-motion)
+
 # cordova-plugin-device-motion
 
 This plugin provides access to the device's accelerometer. The accelerometer is

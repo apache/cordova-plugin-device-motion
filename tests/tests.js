@@ -19,6 +19,9 @@
  *
 */
 
+/* jshint jasmine: true */
+/* global Windows */
+
 exports.defineAutoTests = function () {
     var isWindows = (cordova.platformId === "windows") || (cordova.platformId === "windows8"),
      // Checking existence of accelerometer for windows platform 
@@ -74,7 +77,7 @@ exports.defineAutoTests = function () {
             isAccelExist = false;
             expect(true).toBe(true);
             done();
-         }
+         };
 
         navigator.accelerometer.getCurrentAcceleration(win, onError);
       });
@@ -92,7 +95,7 @@ exports.defineAutoTests = function () {
           expect(a.y).toBeGreaterThan(reasonableThreshold * -1);
           expect(a.z).toBeLessThan(reasonableThreshold);
           expect(a.z).toBeGreaterThan(reasonableThreshold * -1);
-          done()
+          done();
         };
 
         navigator.accelerometer.getCurrentAcceleration(win, fail.bind(null,done));
@@ -231,7 +234,7 @@ exports.defineAutoTests = function () {
             win = function() {
               clearTimeout(tid);
               fail(done);
-            }
+            };
           };
 
           // wrap the success call in a closure since the value of win changes between calls
@@ -253,6 +256,25 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     }
 
     var watchAccelId = null;
+
+    /**
+     * Set accelerometer status
+     */
+    function setAccelStatus(status) {
+        document.getElementById('accel_status').innerHTML = status;
+    }
+
+    /**
+     * Stop watching the acceleration
+     */
+    function stopAccel() {
+        console.log("stopAccel()");
+        setAccelStatus("Stopped");
+        if (watchAccelId) {
+            navigator.accelerometer.clearWatch(watchAccelId);
+            watchAccelId = null;
+        }
+    }
 
     /**
      * Start watching acceleration
@@ -283,18 +305,6 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     };
 
     /**
-     * Stop watching the acceleration
-     */
-    var stopAccel = function () {
-        console.log("stopAccel()");
-        setAccelStatus("Stopped");
-        if (watchAccelId) {
-            navigator.accelerometer.clearWatch(watchAccelId);
-            watchAccelId = null;
-        }
-    };
-
-    /**
      * Get current acceleration
      */
     var getAccel = function () {
@@ -320,13 +330,6 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         // Make call
         var opt = {};
         navigator.accelerometer.getCurrentAcceleration(success, fail, opt);
-    };
-
-    /**
-     * Set accelerometer status
-     */
-    var setAccelStatus = function (status) {
-        document.getElementById('accel_status').innerHTML = status;
     };
 
     /******************************************************************************/

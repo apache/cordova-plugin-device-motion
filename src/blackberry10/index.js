@@ -19,6 +19,8 @@
  *
 */
 
+/* global PluginResult */
+
 var callback;
 
 module.exports = {
