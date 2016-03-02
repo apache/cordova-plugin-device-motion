@@ -35,7 +35,7 @@ Although the object is attached to the global scoped `navigator`, it is not avai
         console.log(navigator.accelerometer);
     }
 
-:warning: Report issues on the [Apache Cordova issue tracker](https://issues.apache.org/jira/issues/?jql=project%20%3D%20CB%20AND%20status%20in%20%28Open%2C%20%22In%20Progress%22%2C%20Reopened%29%20AND%20resolution%20%3D%20Unresolved%20AND%20component%20%3D%20%22Plugin%20Device%20Motion%22%20ORDER%20BY%20priority%20DESC%2C%20summary%20ASC%2C%20updatedDate%20DESC)
+Report issues with this plugin on the [Apache Cordova issue tracker](https://issues.apache.org/jira/issues/?jql=project%20%3D%20CB%20AND%20status%20in%20%28Open%2C%20%22In%20Progress%22%2C%20Reopened%29%20AND%20resolution%20%3D%20Unresolved%20AND%20component%20%3D%20%22Plugin%20Device%20Motion%22%20ORDER%20BY%20priority%20DESC%2C%20summary%20ASC%2C%20updatedDate%20DESC)
 
 ## Installation
 
@@ -94,7 +94,7 @@ Values for X, Y, Z motion are all randomly generated in order to simulate the ac
 
 ### Android Quirks
 
-The accelerometer is called with the __SENSOR_DELAY_UI__ flag, which limits the maximum readout frequency to something between 20 and 60 Hz, depending on the device. Values for __period__ corresponding to higher frequencies will result in duplicate samples.
+The accelerometer is called with the `SENSOR_DELAY_UI` flag, which limits the maximum readout frequency to something between 20 and 60 Hz, depending on the device. Values for __period__ corresponding to higher frequencies will result in duplicate samples. More details can be found in the [Android API Guide](http://developer.android.com/guide/topics/sensors/sensors_overview.html#sensors-monitor).
 
 
 ### iOS Quirks
