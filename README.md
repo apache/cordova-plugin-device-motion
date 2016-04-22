@@ -120,7 +120,7 @@ accelerometer.
                                                            accelerometerOptions);
 
 - __accelerometerOptions__: An object with the following optional keys:
-  - __period__: requested period of calls to accelerometerSuccess with acceleration data in Milliseconds. _(Number)_ (Default: 10000)
+  - __frequency__: requested frequency of calls to accelerometerSuccess with acceleration data in Milliseconds. _(Number)_ (Default: 10000)
 
 
 ###  Example
