@@ -24,8 +24,8 @@
 
 exports.defineAutoTests = function () {
     var isWindows = (cordova.platformId === "windows") || (cordova.platformId === "windows8"),
-     // Checking existence of accelerometer for windows platform 
-     // Assumed that accelerometer always exists on other platforms. Extend 
+     // Checking existence of accelerometer for windows platform
+     // Assumed that accelerometer always exists on other platforms. Extend
      // condition to support accelerometer check on other platforms
      isAccelExist = isWindows ? Windows.Devices.Sensors.Accelerometer.getDefault() !== null : true;
 
@@ -178,11 +178,15 @@ exports.defineAutoTests = function () {
             pending();
           }
           var veryRecently = (new Date()).getTime();
+          var ACCEPTABLE_PERCENT_RANGE = 95;
           // Need to check that dates returned are not vastly greater than a recent time stamp.
           // In case the timestamps returned are ridiculously high
           var reasonableTimeLimit = veryRecently + 5000; // 5 seconds from now
           var win = function(a) {
-            expect(a.timestamp).toBeGreaterThan(veryRecently);
+            // Checking if the returned timestamp is atleast 95% of the veryRecently timestamp
+            // If it is greater than very recently (for eg: 125%) it is fine and we do not want
+            // a positive delta comparison in this assert
+            expect((a.timestamp * 100) / veryRecently).toBeGreaterThan(ACCEPTABLE_PERCENT_RANGE);
             expect(a.timestamp).toBeLessThan(reasonableTimeLimit);
             done();
           };
