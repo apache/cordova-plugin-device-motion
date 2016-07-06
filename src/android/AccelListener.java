@@ -148,6 +148,9 @@ public class AccelListener extends CordovaPlugin implements SensorEventListener 
 
         this.setStatus(AccelListener.STARTING);
 
+        // CB-11531: Reset accuracy to the default level
+        this.accuracy = SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM;
+
         // Get accelerometer from sensor manager
         List<Sensor> list = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
 
