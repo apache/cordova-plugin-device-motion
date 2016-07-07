@@ -123,8 +123,13 @@ exports.defineAutoTests = function () {
     describe("watchAcceleration", function() {
       var id;
 
-      afterEach(function() {
-          navigator.accelerometer.clearWatch(id);
+      afterEach(function(done) {
+          if (id) {
+            navigator.accelerometer.clearWatch(id);
+          }
+          // clearWatch implementation is async but doesn't accept a cllback
+          // so let's give it some time before starting next spec
+          setTimeout(done, 100);
       });
 
       it("accelerometer.spec.6 should exist", function() {
@@ -178,15 +183,11 @@ exports.defineAutoTests = function () {
             pending();
           }
           var veryRecently = (new Date()).getTime();
-          var ACCEPTABLE_PERCENT_RANGE = 95;
           // Need to check that dates returned are not vastly greater than a recent time stamp.
           // In case the timestamps returned are ridiculously high
           var reasonableTimeLimit = veryRecently + 5000; // 5 seconds from now
           var win = function(a) {
-            // Checking if the returned timestamp is atleast 95% of the veryRecently timestamp
-            // If it is greater than very recently (for eg: 125%) it is fine and we do not want
-            // a positive delta comparison in this assert
-            expect((a.timestamp * 100) / veryRecently).toBeGreaterThan(ACCEPTABLE_PERCENT_RANGE);
+            expect(a.timestamp).toBeGreaterThan(veryRecently);
             expect(a.timestamp).toBeLessThan(reasonableTimeLimit);
             done();
           };
@@ -291,6 +292,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
             document.getElementById('x').innerHTML = roundNumber(a.x);
             document.getElementById('y').innerHTML = roundNumber(a.y);
             document.getElementById('z').innerHTML = roundNumber(a.z);
+            document.getElementById('t').innerHTML = a.timestamp;
         };
 
         // Fail callback
@@ -322,6 +324,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
             document.getElementById('x').innerHTML = roundNumber(a.x);
             document.getElementById('y').innerHTML = roundNumber(a.y);
             document.getElementById('z').innerHTML = roundNumber(a.z);
+            document.getElementById('t').innerHTML = a.timestamp;
             console.log("getAccel success callback");
         };
 
@@ -348,9 +351,10 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     contentEl.innerHTML = '<div id="info">' +
         'Status: <span id="accel_status">Stopped</span>' +
         '<table width="100%">' +
-        '<tr><td width="20%">X:</td><td id="x"> </td></tr>' +
-        '<tr><td width="20%">Y:</td><td id="y"> </td></tr>' +
-        '<tr><td width="20%">Z:</td><td id="z"> </td></tr>' +
+        '<tr><td width="30%">X:</td><td id="x"> </td></tr>' +
+        '<tr><td width="30%">Y:</td><td id="y"> </td></tr>' +
+        '<tr><td width="30%">Z:</td><td id="z"> </td></tr>' +
+        '<tr><td width="30%">Timestamp:</td><td id="t"> </td></tr>' +
         '</table></div>' +
         accelerometer_tests;
 

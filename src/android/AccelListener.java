@@ -148,9 +148,6 @@ public class AccelListener extends CordovaPlugin implements SensorEventListener 
 
         this.setStatus(AccelListener.STARTING);
 
-        // CB-11531: Reset accuracy to the default level
-        this.accuracy = SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM;
-
         // Get accelerometer from sensor manager
         List<Sensor> list = this.sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
 
@@ -159,6 +156,9 @@ public class AccelListener extends CordovaPlugin implements SensorEventListener 
           this.mSensor = list.get(0);
           if (this.sensorManager.registerListener(this, this.mSensor, SensorManager.SENSOR_DELAY_UI)) {
               this.setStatus(AccelListener.STARTING);
+              // CB-11531: Mark accuracy as 'reliable' - this is complementary to
+              // setting it to 'unreliable' 'stop' method
+              this.accuracy = SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM;
           } else {
               this.setStatus(AccelListener.ERROR_FAILED_TO_START);
               this.fail(AccelListener.ERROR_FAILED_TO_START, "Device sensor returned an error.");
@@ -204,8 +204,10 @@ public class AccelListener extends CordovaPlugin implements SensorEventListener 
      * Called two seconds after starting the listener.
      */
     private void timeout() {
-        if (this.status == AccelListener.STARTING) {
+        if (this.status == AccelListener.STARTING &&
+            this.accuracy >= SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM) {
             // call win with latest cached position
+            // but first check if cached position is reliable
             this.timestamp = System.currentTimeMillis();
             this.win();
         }
