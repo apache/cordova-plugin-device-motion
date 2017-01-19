@@ -2,6 +2,7 @@
   "name": "cordova-plugin-device-motion",
   "version": "1.2.4-dev",
   "description": "Cordova Device Motion Plugin",
+  "types": "./types/index.d.ts",
   "cordova": {
     "id": "cordova-plugin-device-motion",
     "platforms": [
