@@ -20,8 +20,8 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
            id="cordova-plugin-device-motion"
-      version="1.2.4-dev">
-	
+      version="1.2.4">
+
     <name>Device Motion</name>
     <description>Cordova Device Motion Plugin</description>
     <license>Apache 2.0</license>
@@ -32,7 +32,7 @@
     <js-module src="www/Acceleration.js" name="Acceleration">
         <clobbers target="Acceleration" />
     </js-module>
-    
+
     <js-module src="www/accelerometer.js" name="accelerometer">
         <clobbers target="navigator.accelerometer" />
     </js-module>
@@ -43,8 +43,8 @@
             <feature name="Accelerometer">
                 <param name="firefoxos-package" value="Accelerometer" />
             </feature>
-        </config-file>                                         
-        
+        </config-file>
+
         <js-module src="src/firefoxos/accelerometer.js" name="accelerometer-impl">
           <runs />
         </js-module>
@@ -52,7 +52,7 @@
 
     <!-- android -->
     <platform name="android">
-	    
+
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Accelerometer">
                 <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener"/>
@@ -60,12 +60,12 @@
         </config-file>
 
         <source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/devicemotion" />
-    
+
     </platform>
-    
+
     <!-- amazon-fireos -->
     <platform name="amazon-fireos">
-	    
+
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Accelerometer">
                 <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener"/>
@@ -73,9 +73,9 @@
         </config-file>
 
         <source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/devicemotion" />
-    
+
     </platform>
-    
+
     <!-- ubuntu -->
     <platform name="ubuntu">
         <header-file src="src/ubuntu/accelerometer.h" />
@@ -84,16 +84,16 @@
 
     <!-- ios -->
     <platform name="ios">
-        
+
         <config-file target="config.xml" parent="/*">
             <feature name="Accelerometer">
                 <param name="ios-package" value="CDVAccelerometer"/>
             </feature>
         </config-file>
-            
+
         <header-file src="src/ios/CDVAccelerometer.h" />
         <source-file src="src/ios/CDVAccelerometer.m" />
-        
+
         <framework src="CoreMotion.framework" />
     </platform>
 
