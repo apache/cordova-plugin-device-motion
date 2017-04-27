@@ -20,7 +20,7 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
            id="cordova-plugin-device-motion"
-      version="1.2.4">
+      version="1.2.5">
 
     <name>Device Motion</name>
     <description>Cordova Device Motion Plugin</description>
