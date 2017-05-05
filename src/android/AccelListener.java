@@ -34,15 +34,20 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.util.Log;
 
 import android.os.Handler;
 import android.os.Looper;
 
+import com.google.android.things.contrib.driver.mma7660fc.Mma7660FcAccelerometerDriver;
+
+import java.io.IOException;
 /**
  * This class listens to the accelerometer sensor and stores the latest
  * acceleration values x,y,z.
  */
 public class AccelListener extends CordovaPlugin implements SensorEventListener {
+    private static final String TAG = "AccelListener";
 
     public static int STOPPED = 0;
     public static int STARTING = 1;
@@ -56,6 +61,9 @@ public class AccelListener extends CordovaPlugin implements SensorEventListener 
 
     private SensorManager sensorManager;    // Sensor manager
     private Sensor mSensor;                           // Acceleration sensor returned by sensor manager
+
+    private Mma7660FcAccelerometerDriver mAccelerometerDriver;
+    // private SensorManager mSensorManager;
 
     private CallbackContext callbackContext;              // Keeps track of the JS callback context.
 
@@ -88,6 +96,16 @@ public class AccelListener extends CordovaPlugin implements SensorEventListener 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         this.sensorManager = (SensorManager) cordova.getActivity().getSystemService(Context.SENSOR_SERVICE);
+
+        // init accelerometer for android things
+        try {
+            mAccelerometerDriver = new Mma7660FcAccelerometerDriver(BoardDefaults.getI2CPort());
+            mAccelerometerDriver.register();
+            Log.i(TAG, "Accelerometer driver registered");
+        } catch (IOException e) {
+            Log.e(TAG, "Error initializing accelerometer driver: ", e);
+            // AccelerometerActivity.this.finish();
+        }
     }
 
     /**
@@ -166,9 +184,28 @@ public class AccelListener extends CordovaPlugin implements SensorEventListener 
           };
 
         } else {
-          this.setStatus(AccelListener.ERROR_FAILED_TO_START);
-          this.fail(AccelListener.ERROR_FAILED_TO_START, "No sensors found to register accelerometer listening to.");
-          return this.status;
+          // this.setStatus(AccelListener.ERROR_FAILED_TO_START);
+          // this.fail(AccelListener.ERROR_FAILED_TO_START, "No sensors found to register accelerometer listening to.");
+            
+            sensorManager.registerDynamicSensorCallback(new SensorManager.DynamicSensorCallback() {
+                @Override
+                public void onDynamicSensorConnected(Sensor sensor) {
+                    if (sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+                        Log.i(TAG, "Accelerometer sensor connected");
+                        if (AccelListener.this.sensorManager.registerListener(AccelListener.this, sensor,
+                                SensorManager.SENSOR_DELAY_NORMAL)) {
+                            AccelListener.this.setStatus(AccelListener.STARTING);
+                            // CB-11531: Mark accuracy as 'reliable' - this is complementary to
+                            // setting it to 'unreliable' 'stop' method
+                            AccelListener.this.accuracy = SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM;
+                        } else {
+                            AccelListener.this.setStatus(AccelListener.ERROR_FAILED_TO_START);
+                            AccelListener.this.fail(AccelListener.ERROR_FAILED_TO_START, "Device sensor returned an error.");
+                        }
+                    }
+                }
+            });
+            return this.status;
         }
 
         startTimeout();
