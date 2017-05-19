@@ -27,6 +27,8 @@ description: Access accelerometer data.
 
 # cordova-plugin-device-motion
 
+DUMMY ENTRY
+
 This plugin provides access to the device's accelerometer. The accelerometer is
 a motion sensor that detects the change (_delta_) in movement relative to the
 current device orientation, in three dimensions along the _x_, _y_, and _z_
