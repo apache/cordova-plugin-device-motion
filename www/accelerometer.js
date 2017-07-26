@@ -105,6 +105,14 @@ var accelerometer = {
             return;
         }
 
+        if (cordova.platformId === "browser" && !eventTimerId) {
+            // fire devicemotion event once
+            var devicemotionEvent = new Event('devicemotion');
+            window.setTimeout(function() {
+                window.dispatchEvent(devicemotionEvent);
+            }, 200);
+        }
+
         var p;
         var win = function (a) {
             removeListeners(p);
