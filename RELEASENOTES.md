@@ -20,7 +20,7 @@
 -->
 # Release Notes
 
-### 1.2.6 (Sep 18, 2017)
+### 2.0.0 (Sep 18, 2017)
 * [CB-13068](https://issues.apache.org/jira/browse/CB-13068) added info tag for deprecation
 * [CB-12726](https://issues.apache.org/jira/browse/CB-12726) Device Motion - SUNSET
 * [CB-13115](https://issues.apache.org/jira/browse/CB-13115) **Browser** Fixed `getCurrentAcceleration()` on **Firefox**, **Safari** and **Edge**
