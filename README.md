@@ -27,7 +27,14 @@ description: Access accelerometer data.
 
 # cordova-plugin-device-motion
 
-> This plugin is no longer being worked on as the functionality provided by this plugin is now included in most browsers. For users who want to get the device's acceleration they should implement a `devicemotion ` event listener as outlined in the [W3C DeviceOrientation Event Specification](https://w3c.github.io/deviceorientation/spec-source-orientation.html).
+# Deprecation Notice
+
+With the [W3C Device Motion and Orientation API](https://www.w3.org/TR/2016/CR-orientation-event-20160818/) now being supported on iOS, Android and Windows devices, this plugin is not needed any more. Migrating from this plugin to the [W3C Device Motion and Orientation API](https://www.w3.org/TR/2016/CR-orientation-event-20160818/) is explained in this [PhoneGap blog post](https://blog.phonegap.com/migrating-from-the-cordova-device-motion-plugin-ddd8176632ed).
+
+----
+
+
+## Description
 
 This plugin provides access to the device's accelerometer. The accelerometer is
 a motion sensor that detects the change (_delta_) in movement relative to the
