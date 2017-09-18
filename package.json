@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-device-motion",
-  "version": "1.2.6",
+  "version": "1.2.7-dev",
   "description": "[DEPRECATED] Cordova Device Motion Plugin",
   "types": "./types/index.d.ts",
   "cordova": {
