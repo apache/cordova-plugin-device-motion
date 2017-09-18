@@ -37,6 +37,11 @@
         <clobbers target="navigator.accelerometer" />
     </js-module>
 
+    <info>
+        [DEPRECATED] - cordova-plugin-device-motion
+        With the W3C Device Motion and Orientation API now being supported on iOS, Android and Windows devices, this plugin is not needed any more. Read more about the API at https://www.w3.org/TR/2016/CR-orientation-event-20160818/ 
+    </info>
+
     <!-- firefoxos -->
     <platform name="firefoxos">
         <config-file target="config.xml" parent="/*">
