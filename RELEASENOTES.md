@@ -20,6 +20,9 @@
 -->
 # Release Notes
 
+### 2.0.1 (April 13, 2018)
+* [CB-14001](https://issues.apache.org/jira/browse/CB-14001): Fix `cordovaDependencies` to allow plugin install
+
 ### 2.0.0 (Sep 18, 2017)
 * [CB-13068](https://issues.apache.org/jira/browse/CB-13068) added info tag for deprecation
 * [CB-12726](https://issues.apache.org/jira/browse/CB-12726) Device Motion - SUNSET
