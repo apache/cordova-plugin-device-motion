@@ -27,9 +27,13 @@ description: Access accelerometer data.
 
 # cordova-plugin-device-motion
 
-# Deprecation Notice
+# Usage Notice
 
-With the [W3C Device Motion and Orientation API](https://www.w3.org/TR/2016/CR-orientation-event-20160818/) now being supported on iOS, Android and Windows devices, this plugin is not needed any more. Migrating from this plugin to the [W3C Device Motion and Orientation API](https://www.w3.org/TR/2016/CR-orientation-event-20160818/) is explained in this [PhoneGap blog post](https://blog.phonegap.com/migrating-from-the-cordova-device-motion-plugin-ddd8176632ed).
+With the [W3C Device Orientation API](https://www.w3.org/TR/orientation-event/), Android, iOS, and Windows devices may not need this plugin anymore.
+
+However, for iOS 13+, a [secure context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts) is required. Apple does not allow access to the device’s motion or the permission request from an insecure browsing context.
+
+If you use a custom scheme, i.e., the `app` protocol, for your iOS app, the browsing context is considered insecure. To solve this problem and be able to use the device motion feature, this plugin will be necessary on iOS 13+.
 
 ----
 
