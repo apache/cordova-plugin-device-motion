@@ -23,11 +23,11 @@
       version="3.0.0-dev">
 
     <name>Device Motion</name>
-    <description>[DEPRECATED] Cordova Device Motion Plugin</description>
+    <description>Cordova Device Motion Plugin</description>
     <license>Apache 2.0</license>
     <keywords>cordova,device,motion</keywords>
-    <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-device-motion.git</repo>
-    <issue>https://issues.apache.org/jira/browse/CB/component/12320636</issue>
+    <repo>https://github.com/apache/cordova-plugin-device-motion</repo>
+    <issue>https://github.com/apache/cordova-plugin-device-motion/issues</issue>
 
     <js-module src="www/Acceleration.js" name="Acceleration">
         <clobbers target="Acceleration" />
@@ -36,11 +36,6 @@
     <js-module src="www/accelerometer.js" name="accelerometer">
         <clobbers target="navigator.accelerometer" />
     </js-module>
-
-    <info>
-        [DEPRECATED] - cordova-plugin-device-motion
-        With the W3C Device Motion and Orientation API now being supported on iOS, Android and Windows devices, this plugin is not needed any more. Read more about the API at https://www.w3.org/TR/2016/CR-orientation-event-20160818/ 
-    </info>
 
     <!-- android -->
     <platform name="android">
