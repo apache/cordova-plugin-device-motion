@@ -23,7 +23,7 @@
 /* global Windows */
 
 exports.defineAutoTests = function () {
-    var isWindows = (cordova.platformId === "windows") || (cordova.platformId === "windows8"),
+    var isWindows = (cordova.platformId === "windows"),
      // Checking existence of accelerometer for windows platform
      // Assumed that accelerometer always exists on other platforms. Extend
      // condition to support accelerometer check on other platforms
