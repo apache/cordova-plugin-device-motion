@@ -1,22 +1,14 @@
 {
   "name": "cordova-plugin-device-motion",
-  "version": "2.0.2-dev",
+  "version": "3.0.0-dev",
   "description": "Cordova Device Motion Plugin",
   "types": "./types/index.d.ts",
   "cordova": {
     "id": "cordova-plugin-device-motion",
     "platforms": [
-      "firefoxos",
       "android",
-      "amazon-fireos",
-      "ubuntu",
       "ios",
-      "blackberry10",
-      "wp7",
-      "wp8",
-      "windows8",
       "windows",
-      "tizen",
       "browser"
     ]
   },
@@ -27,17 +19,9 @@
     "device",
     "motion",
     "ecosystem:cordova",
-    "cordova-firefoxos",
     "cordova-android",
-    "cordova-amazon-fireos",
-    "cordova-ubuntu",
     "cordova-ios",
-    "cordova-blackberry10",
-    "cordova-wp7",
-    "cordova-wp8",
-    "cordova-windows8",
     "cordova-windows",
-    "cordova-tizen",
     "cordova-browser"
   ],
   "scripts": {

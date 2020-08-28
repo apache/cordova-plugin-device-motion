@@ -20,7 +20,7 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
            id="cordova-plugin-device-motion"
-      version="2.0.2-dev">
+      version="3.0.0-dev">
 
     <name>Device Motion</name>
     <description>Cordova Device Motion Plugin</description>
@@ -37,22 +37,8 @@
         <clobbers target="navigator.accelerometer" />
     </js-module>
 
-    <!-- firefoxos -->
-    <platform name="firefoxos">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Accelerometer">
-                <param name="firefoxos-package" value="Accelerometer" />
-            </feature>
-        </config-file>
-
-        <js-module src="src/firefoxos/accelerometer.js" name="accelerometer-impl">
-          <runs />
-        </js-module>
-    </platform>
-
     <!-- android -->
     <platform name="android">
-
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Accelerometer">
                 <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener"/>
@@ -61,30 +47,10 @@
 
         <source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/devicemotion" />
 
-    </platform>
-
-    <!-- amazon-fireos -->
-    <platform name="amazon-fireos">
-
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="Accelerometer">
-                <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener"/>
-            </feature>
-        </config-file>
-
-        <source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/devicemotion" />
-
-    </platform>
-
-    <!-- ubuntu -->
-    <platform name="ubuntu">
-        <header-file src="src/ubuntu/accelerometer.h" />
-        <source-file src="src/ubuntu/accelerometer.cpp" />
     </platform>
 
     <!-- ios -->
     <platform name="ios">
-
         <config-file target="config.xml" parent="/*">
             <feature name="Accelerometer">
                 <param name="ios-package" value="CDVAccelerometer"/>
@@ -97,62 +63,10 @@
         <framework src="CoreMotion.framework" />
     </platform>
 
-    <!-- blackberry10 -->
-    <platform name="blackberry10">
-        <config-file target="www/config.xml" parent="/widget">
-            <feature name="Accelerometer" value="Accelerometer"/>
-        </config-file>
-        <source-file src="src/blackberry10/index.js" target-dir="Accelerometer" />
-    </platform>
-
-    <!-- wp7 -->
-    <platform name="wp7">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Accelerometer">
-                <param name="wp-package" value="Accelerometer"/>
-            </feature>
-        </config-file>
-
-        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
-            <Capability Name="ID_CAP_SENSORS" />
-        </config-file>
-
-        <source-file src="src/wp/Accelerometer.cs" />
-    </platform>
-
-    <!-- wp8 -->
-    <platform name="wp8">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Accelerometer">
-                <param name="wp-package" value="Accelerometer"/>
-            </feature>
-        </config-file>
-
-        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
-            <Capability Name="ID_CAP_SENSORS" />
-        </config-file>
-
-        <source-file src="src/wp/Accelerometer.cs" />
-    </platform>
-
-    <!-- windows8 -->
-    <platform name="windows8">
-        <js-module src="src/windows/AccelerometerProxy.js" name="AccelerometerProxy">
-            <runs />
-        </js-module>
-    </platform>
-
     <!-- windows -->
     <platform name="windows">
         <js-module src="src/windows/AccelerometerProxy.js" name="AccelerometerProxy">
             <runs />
-        </js-module>
-    </platform>
-
-    <!-- tizen -->
-    <platform name="tizen">
-        <js-module src="src/tizen/AccelerometerProxy.js" name="AccelerometerProxy">
-            <runs/>
         </js-module>
     </platform>
 
