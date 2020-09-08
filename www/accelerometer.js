@@ -17,16 +17,18 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
+
+/* global cordova */
 
 /**
  * This class provides access to device accelerometer data.
  * @constructor
  */
-var argscheck = require('cordova/argscheck'),
-    utils = require("cordova/utils"),
-    exec = require("cordova/exec"),
-    Acceleration = require('./Acceleration');
+var argscheck = require('cordova/argscheck');
+var utils = require('cordova/utils');
+var exec = require('cordova/exec');
+var Acceleration = require('./Acceleration');
 
 // Is the accel sensor running?
 var running = false;
@@ -44,36 +46,42 @@ var accel = null;
 var eventTimerId = null;
 
 // Tells native to start.
-function start() {
-    exec(function (a) {
-        var tempListeners = listeners.slice(0);
-        accel = new Acceleration(a.x, a.y, a.z, a.timestamp);
-        for (var i = 0, l = tempListeners.length; i < l; i++) {
-            tempListeners[i].win(accel);
-        }
-    }, function (e) {
-        var tempListeners = listeners.slice(0);
-        for (var i = 0, l = tempListeners.length; i < l; i++) {
-            tempListeners[i].fail(e);
-        }
-    }, "Accelerometer", "start", []);
+function start () {
+    exec(
+        function (a) {
+            var tempListeners = listeners.slice(0);
+            accel = new Acceleration(a.x, a.y, a.z, a.timestamp);
+            for (var i = 0, l = tempListeners.length; i < l; i++) {
+                tempListeners[i].win(accel);
+            }
+        },
+        function (e) {
+            var tempListeners = listeners.slice(0);
+            for (var i = 0, l = tempListeners.length; i < l; i++) {
+                tempListeners[i].fail(e);
+            }
+        },
+        'Accelerometer',
+        'start',
+        []
+    );
     running = true;
 }
 
 // Tells native to stop.
-function stop() {
-    exec(null, null, "Accelerometer", "stop", []);
+function stop () {
+    exec(null, null, 'Accelerometer', 'stop', []);
     accel = null;
     running = false;
 }
 
 // Adds a callback pair to the listeners array
-function createCallbackPair(win, fail) {
+function createCallbackPair (win, fail) {
     return { win: win, fail: fail };
 }
 
 // Removes a win/fail listener pair from the listeners array
-function removeListeners(l) {
+function removeListeners (l) {
     var idx = listeners.indexOf(l);
     if (idx > -1) {
         listeners.splice(idx, 1);
@@ -94,21 +102,27 @@ var accelerometer = {
     getCurrentAcceleration: function (successCallback, errorCallback, options) {
         argscheck.checkArgs('fFO', 'accelerometer.getCurrentAcceleration', arguments);
 
-        if (cordova.platformId === "windowsphone") {
-            exec(function (a) {
-                accel = new Acceleration(a.x, a.y, a.z, a.timestamp);
-                successCallback(accel);
-            }, function (e) {
-                errorCallback(e);
-            }, "Accelerometer", "getCurrentAcceleration", []);
+        if (cordova.platformId === 'windowsphone') {
+            exec(
+                function (a) {
+                    accel = new Acceleration(a.x, a.y, a.z, a.timestamp);
+                    successCallback(accel);
+                },
+                function (e) {
+                    errorCallback(e);
+                },
+                'Accelerometer',
+                'getCurrentAcceleration',
+                []
+            );
 
             return;
         }
 
-        if (cordova.platformId === "browser" && !eventTimerId) {
+        if (cordova.platformId === 'browser' && !eventTimerId) {
             // fire devicemotion event once
             var devicemotionEvent = new Event('devicemotion');
-            window.setTimeout(function() {
+            window.setTimeout(function () {
                 window.dispatchEvent(devicemotionEvent);
             }, 200);
         }
@@ -144,17 +158,20 @@ var accelerometer = {
     watchAcceleration: function (successCallback, errorCallback, options) {
         argscheck.checkArgs('fFO', 'accelerometer.watchAcceleration', arguments);
         // Default interval (10 sec)
-        var frequency = (options && options.frequency && typeof options.frequency == 'number') ? options.frequency : 10000;
+        var frequency = options && options.frequency && typeof options.frequency === 'number' ? options.frequency : 10000;
 
         // Keep reference to watch id, and report accel readings as often as defined in frequency
         var id = utils.createUUID();
 
-        var p = createCallbackPair(function () { }, function (e) {
-            removeListeners(p);
-            if (errorCallback) {
-                errorCallback(e);
+        var p = createCallbackPair(
+            function () {},
+            function (e) {
+                removeListeners(p);
+                if (errorCallback) {
+                    errorCallback(e);
+                }
             }
-        });
+        );
         listeners.push(p);
 
         timers[id] = {
@@ -176,10 +193,10 @@ var accelerometer = {
             start();
         }
 
-        if (cordova.platformId === "browser" && !eventTimerId) {
+        if (cordova.platformId === 'browser' && !eventTimerId) {
             // Start firing devicemotion events if we haven't already
             var devicemotionEvent = new Event('devicemotion');
-            eventTimerId = window.setInterval(function() {
+            eventTimerId = window.setInterval(function () {
                 window.dispatchEvent(devicemotionEvent);
             }, 200);
         }

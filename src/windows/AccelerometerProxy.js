@@ -17,52 +17,53 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
-/*global Windows:true */
+/* global Windows */
 
 var Acceleration = require('cordova-plugin-device-motion.Acceleration');
 
 /* This is the actual implementation part that returns the result on Windows 8
-*/
+ */
 var gConstant = -9.81;
 
 module.exports = {
-    onDataChanged:null,
-    start:function(win,lose){
-
+    onDataChanged: null,
+    start: function (win, lose) {
         var accel = Windows.Devices.Sensors.Accelerometer.getDefault();
-        if(!accel) {
+        if (!accel) {
             if (lose) {
-                lose("No accelerometer found");
+                lose('No accelerometer found');
             }
-        }
-        else {
-            accel.reportInterval = Math.max(16,accel.minimumReportInterval);
+        } else {
+            accel.reportInterval = Math.max(16, accel.minimumReportInterval);
 
             // store our bound function
-            this.onDataChanged = function(e) {
+            this.onDataChanged = function (e) {
                 var a = e.reading;
-                win(new Acceleration(a.accelerationX * gConstant, a.accelerationY * gConstant, a.accelerationZ * gConstant), {keepCallback: true});
+                win(new Acceleration(a.accelerationX * gConstant, a.accelerationY * gConstant, a.accelerationZ * gConstant), {
+                    keepCallback: true
+                });
             };
-            accel.addEventListener("readingchanged",this.onDataChanged);
+            accel.addEventListener('readingchanged', this.onDataChanged);
 
-            setTimeout(function(){
+            setTimeout(function () {
                 var a = accel.getCurrentReading();
-                win(new Acceleration(a.accelerationX * gConstant, a.accelerationY * gConstant, a.accelerationZ * gConstant), {keepCallback: true});
-            },0); // async do later
+                win(new Acceleration(a.accelerationX * gConstant, a.accelerationY * gConstant, a.accelerationZ * gConstant), {
+                    keepCallback: true
+                });
+            }, 0); // async do later
         }
     },
-    stop:function(win,lose){
-        win = win || function(){};
+    stop: function (win, lose) {
+        win = win || function () {};
         var accel = Windows.Devices.Sensors.Accelerometer.getDefault();
-        if(!accel) {
+        if (!accel) {
             if (lose) {
-                lose("No accelerometer found");
+                lose('No accelerometer found');
             }
-        }
-        else {
-            accel.removeEventListener("readingchanged",this.onDataChanged);
+        } else {
+            accel.removeEventListener('readingchanged', this.onDataChanged);
             this.onDataChanged = null;
             accel.reportInterval = 0; // back to the default
             win();
@@ -70,4 +71,4 @@ module.exports = {
     }
 };
 
-require("cordova/exec/proxy").add("Accelerometer",module.exports);
+require('cordova/exec/proxy').add('Accelerometer', module.exports);

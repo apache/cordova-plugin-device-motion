@@ -17,15 +17,14 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
-
-function listener(success) {
+function listener (success) {
     var accel = {};
 
-    accel.x = (Math.round(((Math.random() * 2) - 1) * 100) / 100);
-    accel.y = (Math.round(((Math.random() * 2) - 1) * 100) / 100);
-    accel.z = (Math.round(((Math.random() * 2) - 1) * 100) / 100);
+    accel.x = Math.round((Math.random() * 2 - 1) * 100) / 100;
+    accel.y = Math.round((Math.random() * 2 - 1) * 100) / 100;
+    accel.z = Math.round((Math.random() * 2 - 1) * 100) / 100;
     accel.timestamp = new Date().getTime();
 
     success(accel);
@@ -34,10 +33,14 @@ function listener(success) {
 }
 
 var Accelerometer = {
-    start: function start(success, error) {
-        return window.addEventListener('devicemotion', function(){
-            listener(success);
-        }, false);
+    start: function start (success, error) {
+        return window.addEventListener(
+            'devicemotion',
+            function () {
+                listener(success);
+            },
+            false
+        );
     }
 };
 
