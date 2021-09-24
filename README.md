@@ -21,10 +21,6 @@ description: Access accelerometer data.
 #         under the License.
 -->
 
-|AppVeyor|Travis CI|
-|:-:|:-:|
-|[![Build status](https://ci.appveyor.com/api/projects/status/github/apache/cordova-plugin-device-motion?branch=master)](https://ci.appveyor.com/project/ApacheSoftwareFoundation/cordova-plugin-device-motion)|[![Build Status](https://travis-ci.org/apache/cordova-plugin-device-motion.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-device-motion)|
-
 # cordova-plugin-device-motion
 
 [![Android Testsuite](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/android.yml/badge.svg)](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/android.yml) [![Chrome Testsuite](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/chrome.yml/badge.svg)](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/chrome.yml) [![iOS Testsuite](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/ios.yml/badge.svg)](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/ios.yml) [![Lint Test](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/lint.yml/badge.svg)](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/lint.yml)
