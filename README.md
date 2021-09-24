@@ -27,6 +27,8 @@ description: Access accelerometer data.
 
 # cordova-plugin-device-motion
 
+[![Android Testsuite](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/android.yml/badge.svg)](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/android.yml) [![Chrome Testsuite](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/chrome.yml/badge.svg)](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/chrome.yml) [![iOS Testsuite](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/ios.yml/badge.svg)](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/ios.yml) [![Lint Test](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/lint.yml/badge.svg)](https://github.com/apache/cordova-plugin-device-motion/actions/workflows/lint.yml)
+
 # Usage Notice
 
 With the [W3C Device Orientation API](https://www.w3.org/TR/orientation-event/), Android, iOS, and Windows devices may not need this plugin anymore.
