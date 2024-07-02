@@ -63,13 +63,6 @@
         <framework src="CoreMotion.framework" />
     </platform>
 
-    <!-- windows -->
-    <platform name="windows">
-        <js-module src="src/windows/AccelerometerProxy.js" name="AccelerometerProxy">
-            <runs />
-        </js-module>
-    </platform>
-
     <!-- browser -->
     <platform name="browser">
         <js-module src="src/browser/AccelerometerProxy.js" name="AccelerometerProxy">
