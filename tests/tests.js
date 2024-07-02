@@ -22,14 +22,14 @@
 /* global cordova, Windows */
 
 exports.defineAutoTests = function () {
-    var isWindows = cordova.platformId === 'windows';
+    const isWindows = cordova.platformId === 'windows';
     // Checking existence of accelerometer for windows platform
     // Assumed that accelerometer always exists on other platforms. Extend
     // condition to support accelerometer check on other platforms
-    var isAccelExist = isWindows ? Windows.Devices.Sensors.Accelerometer.getDefault() !== null : true;
+    let isAccelExist = isWindows ? Windows.Devices.Sensors.Accelerometer.getDefault() !== null : true;
 
     describe('Accelerometer (navigator.accelerometer)', function () {
-        var fail = function (done) {
+        const fail = function (done) {
             expect(true).toBe(false);
             done();
         };
@@ -57,7 +57,7 @@ exports.defineAutoTests = function () {
                 if (!isAccelExist) {
                     pending();
                 }
-                var win = function (a) {
+                const win = function (a) {
                     expect(a).toBeDefined();
                     expect(a.x).toBeDefined();
                     expect(typeof a.x === 'number').toBe(true);
@@ -70,7 +70,7 @@ exports.defineAutoTests = function () {
                     done();
                 };
 
-                var onError = function (err) {
+                const onError = function (err) {
                     console.log(err);
                     console.log('Skipping gyroscope tests, marking all as pending.');
                     isAccelExist = false;
@@ -86,8 +86,8 @@ exports.defineAutoTests = function () {
                 if (!isAccelExist) {
                     pending();
                 }
-                var reasonableThreshold = 15;
-                var win = function (a) {
+                const reasonableThreshold = 15;
+                const win = function (a) {
                     expect(a.x).toBeLessThan(reasonableThreshold);
                     expect(a.x).toBeGreaterThan(reasonableThreshold * -1);
                     expect(a.y).toBeLessThan(reasonableThreshold);
@@ -105,11 +105,11 @@ exports.defineAutoTests = function () {
                 if (!isAccelExist) {
                     pending();
                 }
-                var veryRecently = new Date().getTime();
+                const veryRecently = new Date().getTime();
                 // Need to check that dates returned are not vastly greater than a recent time stamp.
                 // In case the timestamps returned are ridiculously high
-                var reasonableTimeLimit = veryRecently + 5000; // 5 seconds from now
-                var win = function (a) {
+                const reasonableTimeLimit = veryRecently + 5000; // 5 seconds from now
+                const win = function (a) {
                     expect(a.timestamp).toBeGreaterThan(veryRecently - 200); // this is flakey, relaxing a bit
                     expect(a.timestamp).toBeLessThan(reasonableTimeLimit);
                     done();
@@ -120,7 +120,7 @@ exports.defineAutoTests = function () {
         });
 
         describe('watchAcceleration', function () {
-            var id;
+            let id;
 
             afterEach(function (done) {
                 if (id) {
@@ -141,7 +141,7 @@ exports.defineAutoTests = function () {
                 if (!isAccelExist) {
                     pending();
                 }
-                var win = function (a) {
+                const win = function (a) {
                     expect(a).toBeDefined();
                     expect(a.x).toBeDefined();
                     expect(typeof a.x === 'number').toBe(true);
@@ -162,8 +162,8 @@ exports.defineAutoTests = function () {
                 if (!isAccelExist) {
                     pending();
                 }
-                var reasonableThreshold = 15;
-                var win = function (a) {
+                const reasonableThreshold = 15;
+                const win = function (a) {
                     expect(a.x).toBeLessThan(reasonableThreshold);
                     expect(a.x).toBeGreaterThan(reasonableThreshold * -1);
                     expect(a.y).toBeLessThan(reasonableThreshold);
@@ -181,11 +181,11 @@ exports.defineAutoTests = function () {
                 if (!isAccelExist) {
                     pending();
                 }
-                var veryRecently = new Date().getTime();
+                const veryRecently = new Date().getTime();
                 // Need to check that dates returned are not vastly greater than a recent time stamp.
                 // In case the timestamps returned are ridiculously high
-                var reasonableTimeLimit = veryRecently + 5000; // 5 seconds from now
-                var win = function (a) {
+                const reasonableTimeLimit = veryRecently + 5000; // 5 seconds from now
+                const win = function (a) {
                     expect(a.timestamp).toBeGreaterThan(veryRecently - 200); // this is flakey, relaxing a bit
                     expect(a.timestamp).toBeLessThan(reasonableTimeLimit);
                     done();
@@ -199,10 +199,10 @@ exports.defineAutoTests = function () {
                 if (!isAccelExist) {
                     pending();
                 }
-                var callbacksCallCount = 0;
-                var callbacksCallTestCount = 3;
+                let callbacksCallCount = 0;
+                const callbacksCallTestCount = 3;
 
-                var win = function (a) {
+                const win = function (a) {
                     if (callbacksCallCount++ < callbacksCallTestCount) return;
                     expect(typeof a).toBe('object');
                     done();
@@ -213,6 +213,8 @@ exports.defineAutoTests = function () {
         });
 
         describe('clearWatch', function () {
+            let id;
+
             it('accelerometer.spec.10 should exist', function () {
                 expect(navigator.accelerometer.clearWatch).toBeDefined();
                 expect(typeof navigator.accelerometer.clearWatch === 'function').toBe(true);
@@ -223,14 +225,13 @@ exports.defineAutoTests = function () {
                 if (!isAccelExist) {
                     pending();
                 }
-                var id;
 
                 // expect win to get called exactly once
-                var win = function (a) {
+                let win = function (a) {
                     // clear watch on first call
                     navigator.accelerometer.clearWatch(id);
                     // if win isn't called again in 201 ms we assume success
-                    var tid = setTimeout(function () {
+                    const tid = setTimeout(function () {
                         expect(true).toBe(true);
                         done();
                     }, 101);
@@ -260,12 +261,12 @@ exports.defineAutoTests = function () {
 
 exports.defineManualTests = function (contentEl, createActionButton) {
     function roundNumber (num) {
-        var dec = 3;
-        var result = Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
+        const dec = 3;
+        const result = Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
         return result;
     }
 
-    var watchAccelId = null;
+    let watchAccelId = null;
 
     /**
      * Set accelerometer status
@@ -289,11 +290,11 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     /**
      * Start watching acceleration
      */
-    var watchAccel = function () {
+    const watchAccel = function () {
         console.log('watchAccel()');
 
         // Success callback
-        var success = function (a) {
+        const success = function (a) {
             document.getElementById('x').innerHTML = roundNumber(a.x);
             document.getElementById('y').innerHTML = roundNumber(a.y);
             document.getElementById('z').innerHTML = roundNumber(a.z);
@@ -301,14 +302,14 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         };
 
         // Fail callback
-        var fail = function (e) {
+        const fail = function (e) {
             console.log('watchAccel fail callback with error code ' + e);
             stopAccel();
             setAccelStatus(e);
         };
 
         // Update acceleration every 1 sec
-        var opt = {};
+        const opt = {};
         opt.frequency = 1000;
         watchAccelId = navigator.accelerometer.watchAcceleration(success, fail, opt);
 
@@ -318,14 +319,14 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     /**
      * Get current acceleration
      */
-    var getAccel = function () {
+    const getAccel = function () {
         console.log('getAccel()');
 
         // Stop accel if running
         stopAccel();
 
         // Success callback
-        var success = function (a) {
+        const success = function (a) {
             document.getElementById('x').innerHTML = roundNumber(a.x);
             document.getElementById('y').innerHTML = roundNumber(a.y);
             document.getElementById('z').innerHTML = roundNumber(a.z);
@@ -334,19 +335,19 @@ exports.defineManualTests = function (contentEl, createActionButton) {
         };
 
         // Fail callback
-        var fail = function (e) {
+        const fail = function (e) {
             console.log('getAccel fail callback with error code ' + e);
             setAccelStatus(e);
         };
 
         // Make call
-        var opt = {};
+        const opt = {};
         navigator.accelerometer.getCurrentAcceleration(success, fail, opt);
     };
 
     /******************************************************************************/
 
-    var accelerometer_tests =
+    const accelerometer_tests =
         '<div id="getAcceleration"></div>' +
         'Expected result: Will update the status box with X, Y, and Z values when pressed. Status will read "Stopped"' +
         '<p/> <div id="watchAcceleration"></div>' +
