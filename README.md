@@ -27,7 +27,7 @@ description: Access accelerometer data.
 
 # Usage Notice
 
-With the [W3C Device Orientation API](https://www.w3.org/TR/orientation-event/), Android, iOS, and Windows devices may not need this plugin anymore.
+With the [W3C Device Orientation API](https://www.w3.org/TR/orientation-event/), Android and iOS devices may not need this plugin anymore.
 
 However, on iOS 13+, potential issues with permissions and secure contexts can arise. Therefore it is recommended to use this plugin as it uses a native implementation.
 
@@ -61,7 +61,6 @@ Report issues with this plugin on the [Apache Cordova issue tracker](https://iss
 - Android
 - Browser
 - iOS
-- Windows
 
 ## Methods
 
