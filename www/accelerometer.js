@@ -77,7 +77,7 @@ function stop () {
 
 // Adds a callback pair to the listeners array
 function createCallbackPair (win, fail) {
-    return { win: win, fail: fail };
+    return { win, fail };
 }
 
 // Removes a win/fail listener pair from the listeners array
