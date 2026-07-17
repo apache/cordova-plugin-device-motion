@@ -102,23 +102,6 @@ var accelerometer = {
     getCurrentAcceleration: function (successCallback, errorCallback, options) {
         argscheck.checkArgs('fFO', 'accelerometer.getCurrentAcceleration', arguments);
 
-        if (cordova.platformId === 'windowsphone') {
-            exec(
-                function (a) {
-                    accel = new Acceleration(a.x, a.y, a.z, a.timestamp);
-                    successCallback(accel);
-                },
-                function (e) {
-                    errorCallback(e);
-                },
-                'Accelerometer',
-                'getCurrentAcceleration',
-                []
-            );
-
-            return;
-        }
-
         if (cordova.platformId === 'browser' && !eventTimerId) {
             // fire devicemotion event once
             var devicemotionEvent = new Event('devicemotion');
